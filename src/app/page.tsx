@@ -5,15 +5,15 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 backdrop-blur-sm z-50 border-b border-gray-100 transform transition-transform duration-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center">
-            <span className="text-2xl font-[300] tracking-tight text-blue-500">
+            <span className="text-3xl font-[600] tracking-tight text-blue-500">
               PropertAI
             </span>
           </div>
           <Link
             href="/signup"
-            className="px-6 py-2 bg-blue-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium"
+            className="px-6 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium"
           >
             Tester l'outil
           </Link>
@@ -21,7 +21,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative pt-30 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Background Gradient */}
         <div className="absolute inset-0 hero-gradient" />
 
@@ -29,7 +29,12 @@ export default function Home() {
         <div className="absolute inset-0 geometric-pattern" />
 
         <div className="relative max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl font-[300] text-gray-900 mb-6">
+          <div className="inline-block bg-white text-blue-500 border-blue-500 border-1 px-5 py-1 rounded-full mb-10">
+            <span className="text-sm font-[500]">
+              📈 +100 rapports générés par des investisseurs ->
+            </span>
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-[600] text-gray-900 mb-8">
             Décelez la vraie rentabilité derrière n'importe quelle annonce
             immobilière
           </h1>
@@ -39,10 +44,10 @@ export default function Home() {
           </p>
           <div className="max-w-2xl mx-auto">
             <textarea
-              className="w-full h-32 p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none mb-4"
+              className="w-full h-32 p-4 border border-blue-500 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none mb-4"
               placeholder="Collez ici le texte d'une annonce immobilière..."
             />
-            <button className="w-full sm:w-auto px-8 py-3 bg-blue-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium">
+            <button className="w-full sm:w-auto px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium">
               Analyser cette annonce
             </button>
           </div>
