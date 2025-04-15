@@ -21,9 +21,15 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 animate-fade-in-up">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl font-[300] text-gray-900 mb-6">
+      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Background Gradient */}
+        <div className="absolute inset-0 hero-gradient" />
+
+        {/* Geometric Pattern */}
+        <div className="absolute inset-0 geometric-pattern" />
+
+        <div className="relative max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl sm:text-5xl font-[300] text-gray-900 mb-6 animate-float">
             Décelez la vraie rentabilité derrière n'importe quelle annonce
             immobilière
           </h1>
