@@ -3,6 +3,8 @@
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 255, 255, 255;
+  --primary-color: #f97316;
+  --primary-hover: #ea580c;
 }
 
 body {
@@ -21,10 +23,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e3a8a;
+  background: var(--primary-color);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1e40af;
+  background: var(--primary-hover);
 }
