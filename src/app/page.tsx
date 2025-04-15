@@ -31,7 +31,7 @@ export default function Home() {
         <div className="relative max-w-4xl mx-auto text-center">
           <div className="inline-block bg-white text-blue-500 border-blue-500 border-1 px-5 py-1 rounded-full mb-10">
             <span className="text-sm font-[500]">
-              📈 +100 rapports générés par des investisseurs ->
+              📈 +100 rapports générés par des investisseurs
             </span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-[600] text-gray-900 mb-8">
@@ -50,6 +50,90 @@ export default function Home() {
             <button className="w-full sm:w-auto px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium">
               Analyser cette annonce
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Problems & Solutions Section */}
+      <section className="py-20 px-6 bg-gray-50">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-[400] text-center mb-4">
+            Vous perdez du temps à évaluer des biens <br /> qui ne valent pas le
+            coup ?
+          </h2>
+          <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
+            PropertAI analyse pour vous les annonces et révèle leur vrai
+            potentiel d'investissement.
+          </p>
+
+          <div className="grid sm:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="bg-white p-6 rounded-xl shadow-sm">
+              <p className="text-red-600 font-semibold text-sm uppercase mb-1">
+                Difficile d'évaluer le vrai potentiel d'un bien
+              </p>
+              <div className="flex items-start gap-4">
+                <div className="text-3xl">🧠</div>
+                <div>
+                  <h3 className="font-bold mb-2">
+                    Analyse intelligente des annonces
+                  </h3>
+                  <p className="text-gray-600">
+                    Notre IA identifie les points forts et les axes
+                    d'amélioration comme la division ou la LCD.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-sm">
+              <p className="text-red-600 font-semibold text-sm uppercase mb-1">
+                Vous passez trop de temps à filtrer les annonces
+              </p>
+              <div className="flex items-start gap-4">
+                <div className="text-3xl">⏱️</div>
+                <div>
+                  <h3 className="font-bold mb-2">Gain de temps</h3>
+                  <p className="text-gray-600">
+                    Copiez-collez une annonce et obtenez une fiche d'analyse
+                    complète en quelques secondes.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-sm">
+              <p className="text-red-600 font-semibold text-sm uppercase mb-1">
+                Pas facile d'évaluer la rentabilité future
+              </p>
+              <div className="flex items-start gap-4">
+                <div className="text-3xl">📊</div>
+                <div>
+                  <h3 className="font-bold mb-2">Rentabilité estimée</h3>
+                  <p className="text-gray-600">
+                    Simulez les loyers, les rendements locatifs et les
+                    meilleures stratégies d'exploitation.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-sm">
+              <p className="text-red-600 font-semibold text-sm uppercase mb-1">
+                Difficile d'être sûr de son choix
+              </p>
+              <div className="flex items-start gap-4">
+                <div className="text-3xl">✅</div>
+                <div>
+                  <h3 className="font-bold mb-2">
+                    Recommandations personnalisées
+                  </h3>
+                  <p className="text-gray-600">
+                    Recevez des suggestions pour maximiser votre investissement
+                    et éviter les erreurs.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
