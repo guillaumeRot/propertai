@@ -66,71 +66,157 @@ export default function Home() {
             potentiel d'investissement.
           </p>
 
-          <div className="grid sm:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div className="bg-white p-6 rounded-xl shadow-sm">
-              <p className="text-red-600 font-semibold text-sm uppercase mb-1">
-                Difficile d'évaluer le vrai potentiel d'un bien
-              </p>
-              <div className="flex items-start gap-4">
-                <div className="text-3xl">🧠</div>
-                <div>
-                  <h3 className="font-bold mb-2">
-                    Analyse intelligente des annonces
-                  </h3>
-                  <p className="text-gray-600">
-                    Notre IA identifie les points forts et les axes
-                    d'amélioration comme la division ou la LCD.
-                  </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {/* Problèmes */}
+            <div>
+              <h3 className="text-xl font-semibold mb-6 text-gray-800">
+                Les défis que vous rencontrez
+              </h3>
+              <div className="space-y-6">
+                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group">
+                  <div className="flex gap-4">
+                    <span className="text-2xl" aria-hidden="true">
+                      😖
+                    </span>
+                    <div>
+                      <h4 className="font-medium text-gray-800 mb-1">
+                        Une annonce semble bien... mais est-elle rentable ?
+                      </h4>
+                      <p className="text-gray-600 text-sm">
+                        Difficile d'évaluer la rentabilité réelle sans analyse
+                        approfondie.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="absolute right-0 top-1/2 h-px w-6 bg-gray-200 hidden md:block"></div>
+                </div>
+
+                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group">
+                  <div className="flex gap-4">
+                    <span className="text-2xl" aria-hidden="true">
+                      😖
+                    </span>
+                    <div>
+                      <h4 className="font-medium text-gray-800 mb-1">
+                        Trop d'annonces, pas assez de temps pour tout lire.
+                      </h4>
+                      <p className="text-gray-600 text-sm">
+                        La recherche manuelle prend des heures précieuses.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="absolute right-0 top-1/2 h-px w-6 bg-gray-200 hidden md:block"></div>
+                </div>
+
+                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group">
+                  <div className="flex gap-4">
+                    <span className="text-2xl" aria-hidden="true">
+                      😖
+                    </span>
+                    <div>
+                      <h4 className="font-medium text-gray-800 mb-1">
+                        Impossible de tout estimer : loyers, travaux,
+                        fiscalité...
+                      </h4>
+                      <p className="text-gray-600 text-sm">
+                        Les calculs sont complexes et chronophages.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="absolute right-0 top-1/2 h-px w-6 bg-gray-200 hidden md:block"></div>
+                </div>
+
+                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group">
+                  <div className="flex gap-4">
+                    <span className="text-2xl" aria-hidden="true">
+                      😖
+                    </span>
+                    <div>
+                      <h4 className="font-medium text-gray-800 mb-1">
+                        Je passe à côté de bonnes affaires sans le savoir.
+                      </h4>
+                      <p className="text-gray-600 text-sm">
+                        Les opportunités cachées sont difficiles à repérer.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="absolute right-0 top-1/2 h-px w-6 bg-gray-200 hidden md:block"></div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-sm">
-              <p className="text-red-600 font-semibold text-sm uppercase mb-1">
-                Vous passez trop de temps à filtrer les annonces
-              </p>
-              <div className="flex items-start gap-4">
-                <div className="text-3xl">⏱️</div>
-                <div>
-                  <h3 className="font-bold mb-2">Gain de temps</h3>
-                  <p className="text-gray-600">
-                    Copiez-collez une annonce et obtenez une fiche d'analyse
-                    complète en quelques secondes.
-                  </p>
+            {/* Solutions */}
+            <div>
+              <h3 className="text-xl font-semibold mb-6 text-gray-800">
+                Ce que PropertAI fait pour vous
+              </h3>
+              <div className="space-y-6">
+                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group">
+                  <div className="flex gap-4">
+                    <span className="text-2xl" aria-hidden="true">
+                      🤖
+                    </span>
+                    <div>
+                      <h4 className="font-medium text-gray-800 mb-1">
+                        Analyse automatique de rentabilité
+                      </h4>
+                      <p className="text-gray-600 text-sm">
+                        Résultats détaillés dès que vous collez l'annonce.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="absolute left-[-24px] top-1/2 h-px w-6 bg-gray-200 hidden md:block"></div>
                 </div>
-              </div>
-            </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-sm">
-              <p className="text-red-600 font-semibold text-sm uppercase mb-1">
-                Pas facile d'évaluer la rentabilité future
-              </p>
-              <div className="flex items-start gap-4">
-                <div className="text-3xl">📊</div>
-                <div>
-                  <h3 className="font-bold mb-2">Rentabilité estimée</h3>
-                  <p className="text-gray-600">
-                    Simulez les loyers, les rendements locatifs et les
-                    meilleures stratégies d'exploitation.
-                  </p>
+                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group">
+                  <div className="flex gap-4">
+                    <span className="text-2xl" aria-hidden="true">
+                      ⚡️
+                    </span>
+                    <div>
+                      <h4 className="font-medium text-gray-800 mb-1">
+                        Un seul clic suffit
+                      </h4>
+                      <p className="text-gray-600 text-sm">
+                        Plus besoin de lire 10 annonces, gagnez des heures.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="absolute left-[-24px] top-1/2 h-px w-6 bg-gray-200 hidden md:block"></div>
                 </div>
-              </div>
-            </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-sm">
-              <p className="text-red-600 font-semibold text-sm uppercase mb-1">
-                Difficile d'être sûr de son choix
-              </p>
-              <div className="flex items-start gap-4">
-                <div className="text-3xl">✅</div>
-                <div>
-                  <h3 className="font-bold mb-2">
-                    Recommandations personnalisées
-                  </h3>
-                  <p className="text-gray-600">
-                    Recevez des suggestions pour maximiser votre investissement
-                    et éviter les erreurs.
-                  </p>
+                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group">
+                  <div className="flex gap-4">
+                    <span className="text-2xl" aria-hidden="true">
+                      📊
+                    </span>
+                    <div>
+                      <h4 className="font-medium text-gray-800 mb-1">
+                        Estimation complète et détaillée
+                      </h4>
+                      <p className="text-gray-600 text-sm">
+                        Loyers, fiscalité, points faibles, stratégie optimale.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="absolute left-[-24px] top-1/2 h-px w-6 bg-gray-200 hidden md:block"></div>
+                </div>
+
+                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group">
+                  <div className="flex gap-4">
+                    <span className="text-2xl" aria-hidden="true">
+                      🎯
+                    </span>
+                    <div>
+                      <h4 className="font-medium text-gray-800 mb-1">
+                        Suggestions concrètes d'optimisation
+                      </h4>
+                      <p className="text-gray-600 text-sm">
+                        Division, location optimisée, amélioration du rendement.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="absolute left-[-24px] top-1/2 h-px w-6 bg-gray-200 hidden md:block"></div>
                 </div>
               </div>
             </div>
