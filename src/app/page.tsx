@@ -4,16 +4,16 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50 border-b border-gray-100 transform transition-transform duration-500">
+      <header className="fixed top-0 left-0 right-0 backdrop-blur-sm z-50 border-b border-gray-100 transform transition-transform duration-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center">
-            <span className="text-2xl font-[300] tracking-tight text-orange-500">
+            <span className="text-2xl font-[300] tracking-tight text-blue-500">
               PropertAI
             </span>
           </div>
           <Link
             href="/signup"
-            className="px-6 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium"
+            className="px-6 py-2 bg-blue-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium"
           >
             Tester l'outil
           </Link>
@@ -29,7 +29,7 @@ export default function Home() {
         <div className="absolute inset-0 geometric-pattern" />
 
         <div className="relative max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl font-[300] text-gray-900 mb-6 animate-float">
+          <h1 className="text-4xl sm:text-5xl font-[300] text-gray-900 mb-6">
             Décelez la vraie rentabilité derrière n'importe quelle annonce
             immobilière
           </h1>
@@ -39,10 +39,10 @@ export default function Home() {
           </p>
           <div className="max-w-2xl mx-auto">
             <textarea
-              className="w-full h-32 p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent resize-none mb-4"
+              className="w-full h-32 p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none mb-4"
               placeholder="Collez ici le texte d'une annonce immobilière..."
             />
-            <button className="w-full sm:w-auto px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium">
+            <button className="w-full sm:w-auto px-8 py-3 bg-blue-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium">
               Analyser cette annonce
             </button>
           </div>
@@ -189,14 +189,14 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-orange-500 text-white animate-fade-in">
+      <section className="py-20 bg-blue-500 text-white animate-fade-in">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-[300] mb-6">
             Prêt à optimiser vos investissements immobiliers ?
           </h2>
           <Link
             href="/signup"
-            className="inline-block px-8 py-3 bg-white text-orange-500 rounded-full hover:bg-gray-100 transition-colors duration-200 font-medium"
+            className="inline-block px-8 py-3 bg-white text-blue-500 rounded-full hover:bg-gray-100 transition-colors duration-200 font-medium"
           >
             Tester gratuitement
           </Link>
@@ -207,19 +207,19 @@ export default function Home() {
       <footer className="py-12 border-t border-gray-100 animate-fade-in">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <span className="text-xl font-[300] text-orange-500 mb-4 md:mb-0">
+            <span className="text-xl font-[300] text-blue-500 mb-4 md:mb-0">
               PropertAI
             </span>
             <div className="flex gap-6">
               <Link
                 href="/legal"
-                className="text-gray-600 hover:text-orange-500 transition-colors duration-200"
+                className="text-gray-600 hover:text-blue-500 transition-colors duration-200"
               >
                 Mentions légales
               </Link>
               <Link
                 href="/contact"
-                className="text-gray-600 hover:text-orange-500 transition-colors duration-200"
+                className="text-gray-600 hover:text-blue-500 transition-colors duration-200"
               >
                 Contact
               </Link>
