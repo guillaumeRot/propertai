@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 backdrop-blur-sm z-50 border-b border-gray-100 transform transition-transform duration-500">
+      <header className="fixed top-0 left-0 right-0 backdrop-blur-2xl z-50 border-b border-gray-100 transform transition-transform duration-500">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center">
             <span className="text-3xl font-[600] tracking-tight text-blue-500">
@@ -66,19 +66,28 @@ export default function Home() {
             potentiel d'investissement.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative">
+            <svg
+              className="hidden md:block absolute left-1/2 transform -translate-x-1/2 top-10 w-1 h-[90%] text-gray-200"
+              fill="none"
+              viewBox="0 0 1 100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="1" height="100%" fill="currentColor" />
+            </svg>
+
             {/* Problèmes */}
             <div>
-              <h3 className="text-xl font-semibold mb-6 text-gray-800">
+              <h3 className="text-xl font-semibold mb-6 text-gray-800 text-center">
                 Les défis que vous rencontrez
               </h3>
               <div className="space-y-6">
-                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group">
-                  <div className="flex gap-4">
+                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
+                  <div className="flex gap-4 h-full">
                     <span className="text-2xl" aria-hidden="true">
-                      😖
+                      ⛔️
                     </span>
-                    <div>
+                    <div className="flex flex-col justify-center">
                       <h4 className="font-medium text-gray-800 mb-1">
                         Une annonce semble bien... mais est-elle rentable ?
                       </h4>
@@ -88,15 +97,14 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
-                  <div className="absolute right-0 top-1/2 h-px w-6 bg-gray-200 hidden md:block"></div>
                 </div>
 
-                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group">
-                  <div className="flex gap-4">
+                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
+                  <div className="flex gap-4 h-full">
                     <span className="text-2xl" aria-hidden="true">
-                      😖
+                      ⛔️
                     </span>
-                    <div>
+                    <div className="flex flex-col justify-center">
                       <h4 className="font-medium text-gray-800 mb-1">
                         Trop d'annonces, pas assez de temps pour tout lire.
                       </h4>
@@ -105,15 +113,14 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
-                  <div className="absolute right-0 top-1/2 h-px w-6 bg-gray-200 hidden md:block"></div>
                 </div>
 
-                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group">
-                  <div className="flex gap-4">
+                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
+                  <div className="flex gap-4 h-full">
                     <span className="text-2xl" aria-hidden="true">
-                      😖
+                      ⛔️
                     </span>
-                    <div>
+                    <div className="flex flex-col justify-center">
                       <h4 className="font-medium text-gray-800 mb-1">
                         Impossible de tout estimer : loyers, travaux,
                         fiscalité...
@@ -123,15 +130,14 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
-                  <div className="absolute right-0 top-1/2 h-px w-6 bg-gray-200 hidden md:block"></div>
                 </div>
 
-                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group">
-                  <div className="flex gap-4">
+                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
+                  <div className="flex gap-4 h-full">
                     <span className="text-2xl" aria-hidden="true">
-                      😖
+                      ⛔️
                     </span>
-                    <div>
+                    <div className="flex flex-col justify-center">
                       <h4 className="font-medium text-gray-800 mb-1">
                         Je passe à côté de bonnes affaires sans le savoir.
                       </h4>
@@ -140,24 +146,23 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
-                  <div className="absolute right-0 top-1/2 h-px w-6 bg-gray-200 hidden md:block"></div>
                 </div>
               </div>
             </div>
 
             {/* Solutions */}
             <div>
-              <h3 className="text-xl font-semibold mb-6 text-gray-800">
+              <h3 className="text-xl font-semibold mb-6 text-gray-800 text-center">
                 Ce que PropertAI fait pour vous
               </h3>
               <div className="space-y-6">
-                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group">
-                  <div className="flex gap-4">
+                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
+                  <div className="flex gap-4 h-full">
                     <span className="text-2xl" aria-hidden="true">
                       🤖
                     </span>
-                    <div>
-                      <h4 className="font-medium text-gray-800 mb-1">
+                    <div className="flex flex-col justify-center">
+                      <h4 className="text-orange-500 font-bold mb-1">
                         Analyse automatique de rentabilité
                       </h4>
                       <p className="text-gray-600 text-sm">
@@ -165,16 +170,15 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
-                  <div className="absolute left-[-24px] top-1/2 h-px w-6 bg-gray-200 hidden md:block"></div>
                 </div>
 
-                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group">
-                  <div className="flex gap-4">
+                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
+                  <div className="flex gap-4 h-full">
                     <span className="text-2xl" aria-hidden="true">
                       ⚡️
                     </span>
-                    <div>
-                      <h4 className="font-medium text-gray-800 mb-1">
+                    <div className="flex flex-col justify-center">
+                      <h4 className="text-orange-500 font-bold mb-1">
                         Un seul clic suffit
                       </h4>
                       <p className="text-gray-600 text-sm">
@@ -182,16 +186,15 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
-                  <div className="absolute left-[-24px] top-1/2 h-px w-6 bg-gray-200 hidden md:block"></div>
                 </div>
 
-                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group">
-                  <div className="flex gap-4">
+                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
+                  <div className="flex gap-4 h-full">
                     <span className="text-2xl" aria-hidden="true">
                       📊
                     </span>
-                    <div>
-                      <h4 className="font-medium text-gray-800 mb-1">
+                    <div className="flex flex-col justify-center">
+                      <h4 className="text-orange-500 font-bold mb-1">
                         Estimation complète et détaillée
                       </h4>
                       <p className="text-gray-600 text-sm">
@@ -199,16 +202,15 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
-                  <div className="absolute left-[-24px] top-1/2 h-px w-6 bg-gray-200 hidden md:block"></div>
                 </div>
 
-                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group">
-                  <div className="flex gap-4">
+                <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
+                  <div className="flex gap-4 h-full">
                     <span className="text-2xl" aria-hidden="true">
                       🎯
                     </span>
-                    <div>
-                      <h4 className="font-medium text-gray-800 mb-1">
+                    <div className="flex flex-col justify-center">
+                      <h4 className="text-orange-500 font-bold mb-1">
                         Suggestions concrètes d'optimisation
                       </h4>
                       <p className="text-gray-600 text-sm">
@@ -216,7 +218,6 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
-                  <div className="absolute left-[-24px] top-1/2 h-px w-6 bg-gray-200 hidden md:block"></div>
                 </div>
               </div>
             </div>
