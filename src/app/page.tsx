@@ -230,50 +230,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-20 bg-gray-50 animate-fade-in">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="p-6 bg-white rounded-xl shadow-sm hover:-translate-y-1 transition-transform duration-300">
-              <div className="text-4xl mb-4">⏱️</div>
-              <h3 className="text-xl font-[300] text-gray-900 mb-2">
-                Gagnez du temps
-              </h3>
-              <p className="text-gray-600">
-                Analyse instantanée des annonces sans perte de temps
-              </p>
-            </div>
-            <div className="p-6 bg-white rounded-xl shadow-sm hover:-translate-y-1 transition-transform duration-300">
-              <div className="text-4xl mb-4">💡</div>
-              <h3 className="text-xl font-[300] text-gray-900 mb-2">
-                Détectez les opportunités
-              </h3>
-              <p className="text-gray-600">
-                Identification des leviers de rentabilité cachés
-              </p>
-            </div>
-            <div className="p-6 bg-white rounded-xl shadow-sm hover:-translate-y-1 transition-transform duration-300">
-              <div className="text-4xl mb-4">🤖</div>
-              <h3 className="text-xl font-[300] text-gray-900 mb-2">
-                Recommandations IA
-              </h3>
-              <p className="text-gray-600">
-                Suggestions concrètes pour optimiser votre investissement
-              </p>
-            </div>
-            <div className="p-6 bg-white rounded-xl shadow-sm hover:-translate-y-1 transition-transform duration-300">
-              <div className="text-4xl mb-4">📊</div>
-              <h3 className="text-xl font-[300] text-gray-900 mb-2">
-                Prise de décision éclairée
-              </h3>
-              <p className="text-gray-600">
-                Analyse complète pour des choix d'investissement avisés
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Comparison Section */}
       <section className="py-20 animate-fade-in">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
