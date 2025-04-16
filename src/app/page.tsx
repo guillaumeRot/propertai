@@ -1,4 +1,4 @@
-import { AlertCircle } from "lucide-react";
+import { CircleCheck, CircleCheckBig, CircleX, Users } from "lucide-react"; // Ajoutez les icônes nécessaires
 import Link from "next/link";
 
 export default function Home() {
@@ -30,12 +30,16 @@ export default function Home() {
         <div className="absolute inset-0 geometric-pattern" />
 
         <div className="relative max-w-4xl mx-auto text-center">
-          <div className="inline-block bg-white text-blue-500 border-blue-500 border-1 px-5 py-1 rounded-full mb-10">
-            <span className="text-sm font-[500]">
-              📈 +100 rapports générés par des investisseurs
-            </span>
+          <div className="inline-block bg-white text-gray-700 border-gray-300 border-1 px-5 py-1 rounded-full mb-8 italic">
+            <div className="flex gap-4 h-full items-center align-middle">
+              <Users className="w-6 h-6 text-blue-500" aria-hidden="true" />
+              <span className="text-sm font-[500] h-full">
+                Déjà plus de 100 analyses réalisées pour des investisseurs
+                partout en France
+              </span>
+            </div>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-[600] text-gray-900 mb-8">
+          <h1 className="text-4xl sm:text-5xl/16 font-[600] text-gray-900 mb-8">
             Décelez la vraie rentabilité derrière n'importe quelle annonce
             immobilière
           </h1>
@@ -58,7 +62,7 @@ export default function Home() {
       {/* Problems & Solutions Section */}
       <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-[400] text-center mb-4">
+          <h2 className="text-3xl sm:text-4xl/12 font-[400] text-center mb-4">
             Vous perdez du temps à évaluer des biens <br /> qui ne valent pas le
             coup ?
           </h2>
@@ -85,7 +89,7 @@ export default function Home() {
               <div className="space-y-6">
                 <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
                   <div className="flex gap-4 h-full">
-                    <AlertCircle
+                    <CircleX
                       className="w-8 h-8 text-red-500"
                       aria-hidden="true"
                     />
@@ -103,7 +107,7 @@ export default function Home() {
 
                 <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
                   <div className="flex gap-4 h-full">
-                    <AlertCircle
+                    <CircleX
                       className="w-8 h-8 text-red-500"
                       aria-hidden="true"
                     />
@@ -120,7 +124,7 @@ export default function Home() {
 
                 <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
                   <div className="flex gap-4 h-full">
-                    <AlertCircle
+                    <CircleX
                       className="w-8 h-8 text-red-500"
                       aria-hidden="true"
                     />
@@ -138,7 +142,7 @@ export default function Home() {
 
                 <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
                   <div className="flex gap-4 h-full">
-                    <AlertCircle
+                    <CircleX
                       className="w-8 h-8 text-red-500"
                       aria-hidden="true"
                     />
@@ -163,9 +167,10 @@ export default function Home() {
               <div className="space-y-6">
                 <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
                   <div className="flex gap-4 h-full">
-                    <span className="text-2xl" aria-hidden="true">
-                      🤖
-                    </span>
+                    <CircleCheckBig
+                      className="w-8 h-8 text-orange-500"
+                      aria-hidden="true"
+                    />
                     <div className="flex flex-col justify-center">
                       <h4 className="text-orange-500 font-bold mb-1">
                         Analyse automatique de rentabilité
@@ -179,9 +184,10 @@ export default function Home() {
 
                 <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
                   <div className="flex gap-4 h-full">
-                    <span className="text-2xl" aria-hidden="true">
-                      ⚡️
-                    </span>
+                    <CircleCheckBig
+                      className="w-8 h-8 text-orange-500"
+                      aria-hidden="true"
+                    />
                     <div className="flex flex-col justify-center">
                       <h4 className="text-orange-500 font-bold mb-1">
                         Un seul clic suffit
@@ -195,9 +201,10 @@ export default function Home() {
 
                 <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
                   <div className="flex gap-4 h-full">
-                    <span className="text-2xl" aria-hidden="true">
-                      📊
-                    </span>
+                    <CircleCheckBig
+                      className="w-8 h-8 text-orange-500"
+                      aria-hidden="true"
+                    />
                     <div className="flex flex-col justify-center">
                       <h4 className="text-orange-500 font-bold mb-1">
                         Estimation complète et détaillée
@@ -211,9 +218,10 @@ export default function Home() {
 
                 <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
                   <div className="flex gap-4 h-full">
-                    <span className="text-2xl" aria-hidden="true">
-                      🎯
-                    </span>
+                    <CircleCheckBig
+                      className="w-8 h-8 text-orange-500"
+                      aria-hidden="true"
+                    />
                     <div className="flex flex-col justify-center">
                       <h4 className="text-orange-500 font-bold mb-1">
                         Suggestions concrètes d'optimisation
@@ -230,51 +238,249 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Comparison Section */}
-      <section className="py-20 animate-fade-in">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-[300] text-center mb-12">
-            Pourquoi choisir PropertAI ?
+      <section className="bg-white py-16 px-4 sm:px-8 lg:px-16">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl/12 font-[400] text-center text-gray-900 mb-4">
+            Comment PropertAI se distingue <br />
+            des autres outils du marché ?
           </h2>
+          <p className="text-center text-gray-600 mb-12">
+            Un comparatif clair pour comprendre les limites des solutions
+            actuelles et les avantages uniques de PropertAI.
+          </p>
+
           <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
+            <table className="min-w-full table-auto border-collapse text-left">
               <thead>
-                <tr className="border-b border-gray-200">
-                  <th className="py-4 px-6 text-left font-[300]">Outil</th>
-                  <th className="py-4 px-6 text-left font-[300]">
-                    Ce qu'il propose
+                <tr className="bg-gray-100 text-gray-700">
+                  <th className="px-6 py-4 font-semibold text-sm">Critères</th>
+                  <th className="px-6 py-4 font-semibold text-sm text-center">
+                    Recherche manuelle
                   </th>
-                  <th className="py-4 px-6 text-left font-[300]">
-                    Ce qui manque
+                  <th className="px-6 py-4 font-semibold text-sm text-center">
+                    MoteurImmo & co
+                  </th>
+                  <th className="px-6 py-4 font-semibold text-sm text-center">
+                    MeilleursAgents & co
+                  </th>
+                  <th className="px-6 py-4 font-bold text-lg bg-blue-100 text-blue-500 text-center">
+                    PropertAI
                   </th>
                 </tr>
               </thead>
-              <tbody>
-                <tr className="border-b border-gray-100">
-                  <td className="py-4 px-6">Recherche manuelle</td>
-                  <td className="py-4 px-6">Analyse personnelle</td>
-                  <td className="py-4 px-6">Temps perdu, biais humains</td>
+              <tbody className="text-gray-700 text-sm">
+                <tr className="border-t">
+                  <td className="px-6 py-4">
+                    Recherche d’annonces immobilières
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleX
+                      className="w-8 h-8 text-red-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4 font-semibold bg-blue-50">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
                 </tr>
-                <tr className="border-b border-gray-100">
-                  <td className="py-4 px-6">Sites d'annonces</td>
-                  <td className="py-4 px-6">Liste d'annonces</td>
-                  <td className="py-4 px-6">Analyse de rentabilité</td>
+                <tr className="border-t">
+                  <td className="px-6 py-4">Analyse de rentabilité complète</td>
+                  <td className="px-6 py-4">
+                    <CircleX
+                      className="w-8 h-8 text-red-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleX
+                      className="w-8 h-8 text-red-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleX
+                      className="w-8 h-8 text-red-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4 font-semibold bg-blue-50">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
                 </tr>
-                <tr>
-                  <td className="py-4 px-6">PropertAI</td>
-                  <td className="py-4 px-6">Analyse IA complète</td>
-                  <td className="py-4 px-6">Rien !</td>
+                <tr className="border-t">
+                  <td className="px-6 py-4">
+                    Suggestions d’amélioration du bien
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleX
+                      className="w-8 h-8 text-red-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleX
+                      className="w-8 h-8 text-red-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleX
+                      className="w-8 h-8 text-red-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4 font-semibold bg-blue-50">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                </tr>
+                <tr className="border-t">
+                  <td className="px-6 py-4">
+                    Estimation des loyers et cashflow
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleX
+                      className="w-8 h-8 text-red-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleX
+                      className="w-8 h-8 text-red-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4 font-semibold bg-blue-50">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                </tr>
+                <tr className="border-t">
+                  <td className="px-6 py-4">Facilité d’usage</td>
+                  <td className="px-6 py-4">
+                    <CircleX
+                      className="w-8 h-8 text-red-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4 font-semibold bg-blue-50">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                </tr>
+                <tr className="border-t">
+                  <td className="px-6 py-4">Gain de temps</td>
+                  <td className="px-6 py-4">
+                    <CircleX
+                      className="w-8 h-8 text-red-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleX
+                      className="w-8 h-8 text-red-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4 font-semibold bg-blue-50">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                </tr>
+                <tr className="border-t">
+                  <td className="px-6 py-4">
+                    Accompagnement pensée "investisseur"
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleX
+                      className="w-8 h-8 text-red-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleX
+                      className="w-8 h-8 text-red-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4">
+                    <CircleX
+                      className="w-8 h-8 text-red-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
+                  <td className="px-6 py-4 font-semibold bg-blue-50">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500 mx-auto"
+                      aria-hidden="true"
+                    />
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
+
+          <p className="text-sm text-center text-gray-400 mt-6">
+            Comparatif basé sur les fonctionnalités clés utilisées par les
+            investisseurs immobiliers.
+          </p>
         </div>
       </section>
 
       {/* FAQ Section */}
       <section className="py-20 bg-gray-50 animate-fade-in">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-[300] text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl/12 font-[400] text-center mb-12">
             Questions fréquentes
           </h2>
           <div className="space-y-8">
@@ -304,8 +510,76 @@ export default function Home() {
               </h3>
               <p className="text-gray-600">
                 Oui, vous pouvez analyser autant d'annonces que vous le
-                souhaitez. La version gratuite offre 5 analyses par jour.
+                souhaitez. La version gratuite offre 3 analyses par mois.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="overflow-hidden py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">
+              Ils ont testé, ils recommandent.
+            </h2>
+            <p className="text-gray-600 mt-2">
+              Des investisseurs de toute la France utilisent déjà PropertAI pour
+              gagner du temps et prendre de meilleures décisions.
+            </p>
+          </div>
+
+          <div className="relative overflow-hidden">
+            <div className="animate-marquee whitespace-nowrap flex gap-6 mb-6">
+              <div className="testimonial-card">
+                “PropertAI m’a permis d’identifier une opportunité que j’aurais
+                totalement ratée.”
+                <br />
+                <span className="author">— Julien, investisseur à Lyon</span>
+              </div>
+              <div className="testimonial-card">
+                “L’outil va droit au but. Rentable, clair, rapide.”
+                <br />
+                <span className="author">
+                  — Sarah, débutante en investissement
+                </span>
+              </div>
+              <div className="testimonial-card">
+                “PropertAI m’aide à challenger mes agents avec des vraies
+                analyses.”
+                <br />
+                <span className="author">— Farid, multi-investisseur</span>
+              </div>
+              <div className="testimonial-card">
+                “Un vrai gain de temps pour comparer les annonces.”
+                <br />
+                <span className="author">— Thomas, Paris</span>
+              </div>
+            </div>
+
+            <div className="animate-marquee-reverse whitespace-nowrap flex gap-6">
+              <div className="testimonial-card">
+                “C’est devenu un réflexe avant toute visite.”
+                <br />
+                <span className="author">
+                  — Claire, investisseuse en colocation
+                </span>
+              </div>
+              <div className="testimonial-card">
+                “Simple, rapide, sans bullshit. Bravo.”
+                <br />
+                <span className="author">— Antoine, acheteur locatif</span>
+              </div>
+              <div className="testimonial-card">
+                “On voit direct les forces/faiblesses d’un bien.”
+                <br />
+                <span className="author">— Laura, investisseuse à Nantes</span>
+              </div>
+              <div className="testimonial-card">
+                “Merci pour cet outil. Un vrai plus pour négocier.”
+                <br />
+                <span className="author">— Rémi, investisseur solo</span>
+              </div>
             </div>
           </div>
         </div>
