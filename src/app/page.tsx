@@ -1,3 +1,4 @@
+import { AlertCircle } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
@@ -84,9 +85,10 @@ export default function Home() {
               <div className="space-y-6">
                 <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
                   <div className="flex gap-4 h-full">
-                    <span className="text-2xl" aria-hidden="true">
-                      ⛔️
-                    </span>
+                    <AlertCircle
+                      className="w-8 h-8 text-red-500"
+                      aria-hidden="true"
+                    />
                     <div className="flex flex-col justify-center">
                       <h4 className="font-medium text-gray-800 mb-1">
                         Une annonce semble bien... mais est-elle rentable ?
@@ -101,9 +103,10 @@ export default function Home() {
 
                 <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
                   <div className="flex gap-4 h-full">
-                    <span className="text-2xl" aria-hidden="true">
-                      ⛔️
-                    </span>
+                    <AlertCircle
+                      className="w-8 h-8 text-red-500"
+                      aria-hidden="true"
+                    />
                     <div className="flex flex-col justify-center">
                       <h4 className="font-medium text-gray-800 mb-1">
                         Trop d'annonces, pas assez de temps pour tout lire.
@@ -117,9 +120,10 @@ export default function Home() {
 
                 <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
                   <div className="flex gap-4 h-full">
-                    <span className="text-2xl" aria-hidden="true">
-                      ⛔️
-                    </span>
+                    <AlertCircle
+                      className="w-8 h-8 text-red-500"
+                      aria-hidden="true"
+                    />
                     <div className="flex flex-col justify-center">
                       <h4 className="font-medium text-gray-800 mb-1">
                         Impossible de tout estimer : loyers, travaux,
@@ -134,9 +138,10 @@ export default function Home() {
 
                 <div className="bg-white border border-gray-200 p-5 rounded-xl hover:shadow-md transition-shadow duration-300 relative group min-h-[120px]">
                   <div className="flex gap-4 h-full">
-                    <span className="text-2xl" aria-hidden="true">
-                      ⛔️
-                    </span>
+                    <AlertCircle
+                      className="w-8 h-8 text-red-500"
+                      aria-hidden="true"
+                    />
                     <div className="flex flex-col justify-center">
                       <h4 className="font-medium text-gray-800 mb-1">
                         Je passe à côté de bonnes affaires sans le savoir.
