@@ -1,4 +1,4 @@
-import { CircleCheck, CircleCheckBig, CircleX, Users } from "lucide-react"; // Ajoutez les icônes nécessaires
+import { CircleCheck, CircleCheckBig, CircleX } from "lucide-react"; // Ajoutez les icônes nécessaires
 import Link from "next/link";
 
 export default function Home() {
@@ -30,15 +30,24 @@ export default function Home() {
         <div className="absolute inset-0 geometric-pattern" />
 
         <div className="relative max-w-4xl mx-auto text-center">
-          <div className="inline-block bg-white text-gray-700 border-gray-300 border-1 px-5 py-1 rounded-full mb-8 italic">
-            <div className="flex gap-4 h-full items-center align-middle">
-              <Users className="w-6 h-6 text-blue-500" aria-hidden="true" />
-              <span className="text-sm font-[500] h-full">
-                Déjà plus de 100 analyses réalisées pour des investisseurs
-                partout en France
-              </span>
-            </div>
-          </div>
+          <p className="mb-4 inline-flex items-center text-sm font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full shadow-sm italic">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-4 h-4 mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+              />
+            </svg>
+            Déjà plus de 100 analyses réalisées pour des investisseurs partout
+            en France
+          </p>
           <h1 className="text-4xl sm:text-5xl/16 font-[600] text-gray-900 mb-8">
             Décelez la vraie rentabilité derrière n'importe quelle annonce
             immobilière
@@ -520,7 +529,7 @@ export default function Home() {
       <section className="overflow-hidden py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">
+            <h2 className="text-3xl sm:text-4xl/12 font-[400] text-gray-900">
               Ils ont testé, ils recommandent.
             </h2>
             <p className="text-gray-600 mt-2">
@@ -627,32 +636,59 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonial Section */}
-      <section className="py-20 animate-fade-in">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <blockquote className="text-2xl font-[300] text-gray-700 italic">
-            "PropertAI m'a permis de découvrir des opportunités que j'aurais
-            manquées. L'analyse des leviers de rentabilité est vraiment
-            impressionnante."
-          </blockquote>
-          <p className="mt-4 text-gray-600">
-            - Thomas L., Investisseur immobilier
-          </p>
-        </div>
-      </section>
+      <section className="relative bg-gradient-to-br from-blue-50 to-blue-100 py-20 px-6 sm:px-10 lg:px-20">
+        <div className="absolute inset-0 bg-[url('https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png')] opacity-10 pointer-events-none"></div>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-blue-500 text-white animate-fade-in">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-[300] mb-6">
-            Prêt à optimiser vos investissements immobiliers ?
+        <div className="relative max-w-3xl mx-auto text-center">
+          <p className="mb-4 inline-flex items-center text-sm font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full shadow-sm italic">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-4 h-4 mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+              />
+            </svg>
+            Déjà plus de 100 analyses réalisées pour des investisseurs partout
+            en France
+          </p>
+
+          <h2 className="text-3xl sm:text-4xl/12 font-[400] text-gray-800 leading-tight mb-4">
+            Collez une description. Obtenez une analyse.
           </h2>
-          <Link
-            href="/signup"
-            className="inline-block px-8 py-3 bg-white text-blue-500 rounded-full hover:bg-gray-100 transition-colors duration-200 font-medium"
+          <p className="text-gray-600 mb-8 text-base sm:text-lg">
+            PropertAI transforme n'importe quelle annonce en rapport clair et
+            actionnable.
+            <br className="hidden sm:block" /> Gratuit, instantané, sans
+            inscription.
+          </p>
+
+          <a
+            href="#analyse"
+            className="inline-flex items-center px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold rounded-xl shadow-lg transition-colors duration-200"
           >
-            Tester gratuitement
-          </Link>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5 mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+              />
+            </svg>
+            Analyser une description maintenant
+          </a>
         </div>
       </section>
 
