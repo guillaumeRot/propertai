@@ -529,26 +529,47 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="relative overflow-hidden">
-            <div className="animate-marquee whitespace-nowrap flex gap-6 mb-6">
+          <div className="marquee">
+            <div className="marquee-content">
               <div className="testimonial-card">
                 “PropertAI m’a permis d’identifier une opportunité que j’aurais
                 totalement ratée.”
                 <br />
-                <span className="author">— Julien, investisseur à Lyon</span>
+                <span className="author">— Julien, Lyon</span>
               </div>
               <div className="testimonial-card">
                 “L’outil va droit au but. Rentable, clair, rapide.”
                 <br />
-                <span className="author">
-                  — Sarah, débutante en investissement
-                </span>
+                <span className="author">— Sarah, Bordeaux</span>
               </div>
               <div className="testimonial-card">
                 “PropertAI m’aide à challenger mes agents avec des vraies
                 analyses.”
                 <br />
-                <span className="author">— Farid, multi-investisseur</span>
+                <span className="author">— Farid, Marseille</span>
+              </div>
+              <div className="testimonial-card">
+                “Un vrai gain de temps pour comparer les annonces.”
+                <br />
+                <span className="author">— Thomas, Paris</span>
+              </div>
+
+              <div className="testimonial-card">
+                “PropertAI m’a permis d’identifier une opportunité que j’aurais
+                totalement ratée.”
+                <br />
+                <span className="author">— Julien, Lyon</span>
+              </div>
+              <div className="testimonial-card">
+                “L’outil va droit au but. Rentable, clair, rapide.”
+                <br />
+                <span className="author">— Sarah, Bordeaux</span>
+              </div>
+              <div className="testimonial-card">
+                “PropertAI m’aide à challenger mes agents avec des vraies
+                analyses.”
+                <br />
+                <span className="author">— Farid, Marseille</span>
               </div>
               <div className="testimonial-card">
                 “Un vrai gain de temps pour comparer les annonces.”
@@ -556,29 +577,50 @@ export default function Home() {
                 <span className="author">— Thomas, Paris</span>
               </div>
             </div>
+          </div>
 
-            <div className="animate-marquee-reverse whitespace-nowrap flex gap-6">
+          <div className="marquee reverse mt-6">
+            <div className="marquee-content">
               <div className="testimonial-card">
                 “C’est devenu un réflexe avant toute visite.”
                 <br />
-                <span className="author">
-                  — Claire, investisseuse en colocation
-                </span>
+                <span className="author">— Claire, Lille</span>
               </div>
               <div className="testimonial-card">
                 “Simple, rapide, sans bullshit. Bravo.”
                 <br />
-                <span className="author">— Antoine, acheteur locatif</span>
+                <span className="author">— Antoine, Strasbourg</span>
               </div>
               <div className="testimonial-card">
                 “On voit direct les forces/faiblesses d’un bien.”
                 <br />
-                <span className="author">— Laura, investisseuse à Nantes</span>
+                <span className="author">— Laura, Nantes</span>
               </div>
               <div className="testimonial-card">
                 “Merci pour cet outil. Un vrai plus pour négocier.”
                 <br />
-                <span className="author">— Rémi, investisseur solo</span>
+                <span className="author">— Rémi, Toulouse</span>
+              </div>
+
+              <div className="testimonial-card">
+                “C’est devenu un réflexe avant toute visite.”
+                <br />
+                <span className="author">— Claire, Lille</span>
+              </div>
+              <div className="testimonial-card">
+                “Simple, rapide, sans bullshit. Bravo.”
+                <br />
+                <span className="author">— Antoine, Strasbourg</span>
+              </div>
+              <div className="testimonial-card">
+                “On voit direct les forces/faiblesses d’un bien.”
+                <br />
+                <span className="author">— Laura, Nantes</span>
+              </div>
+              <div className="testimonial-card">
+                “Merci pour cet outil. Un vrai plus pour négocier.”
+                <br />
+                <span className="author">— Rémi, Toulouse</span>
               </div>
             </div>
           </div>
