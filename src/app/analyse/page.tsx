@@ -2,6 +2,16 @@
 
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import {
+  BarChart3,
+  CheckCircle,
+  Euro,
+  Gavel,
+  HelpCircle,
+  Lightbulb,
+  Wrench,
+  XCircle,
+} from "lucide-react";
 import { useState } from "react";
 
 export default function AnalysePage() {
@@ -13,19 +23,18 @@ export default function AnalysePage() {
     setLoading(true);
     setResult(null);
 
-    // Simulation d'une réponse d'API
     setTimeout(() => {
       setResult({
         rentabilite: "7.8%",
         loyer: {
           estimation: "950€/mois",
           explication:
-            "Basé sur des biens similaires dans le même quartier sur les 6 derniers mois.",
+            "Basé sur des biens similaires dans le quartier ces 6 derniers mois.",
         },
         fiscalite: {
           regime: "LMNP réel",
           explication:
-            "Permet d’amortir le bien et d’optimiser la fiscalité si vous meublez le logement.",
+            "Amortissement du bien + charges déductibles. Idéal pour location meublée.",
         },
         recommandations: [
           "Diviser le bien en 2 lots pour augmenter le rendement.",
@@ -58,7 +67,7 @@ export default function AnalysePage() {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows={8}
-          className="w-full border border-gray-300 rounded-md p-4 mb-4 shadow-sm"
+          className="w-full border border-gray-300 rounded-md p-4 mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
         />
 
         <button
@@ -70,91 +79,124 @@ export default function AnalysePage() {
         </button>
 
         {result && (
-          <div className="mt-10 bg-white rounded-xl shadow p-6 space-y-6">
-            <h2 className="text-2xl font-semibold text-gray-800">
-              Résultats de l'analyse
-            </h2>
-
-            <div>
-              <p className="text-lg font-medium text-gray-700">
-                Rentabilité estimée :
-              </p>
-              <p className="text-blue-600 text-xl font-bold">
-                {result.rentabilite}
-              </p>
+          <section className="mt-12 space-y-6">
+            <div className="flex items-center justify-center gap-2 text-gray-800 mb-4">
+              <BarChart3 className="w-6 h-6 text-blue-600" />
+              <h2 className="text-2xl font-bold">Résultats de l'analyse</h2>
             </div>
 
-            <div>
-              <p className="text-lg font-medium text-gray-700">
-                Loyer estimé :
-              </p>
-              <p className="text-gray-800 font-semibold">
-                {result.loyer.estimation}
-              </p>
-              <p className="text-sm text-gray-600">
-                {result.loyer.explication}
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white border-l-4 border-blue-500 rounded-lg shadow p-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <BarChart3 className="text-blue-600 w-5 h-5" />
+                  <h3 className="text-lg font-semibold text-blue-600">
+                    Rentabilité estimée
+                  </h3>
+                </div>
+                <p className="text-2xl font-bold text-gray-900">
+                  {result.rentabilite}
+                </p>
+              </div>
+
+              <div className="bg-white rounded-lg shadow p-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <Euro className="w-5 h-5 text-gray-800" />
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    Loyer estimé
+                  </h3>
+                </div>
+                <p className="text-xl font-bold text-gray-900">
+                  {result.loyer.estimation}
+                </p>
+                <p className="text-sm text-gray-600 mt-1">
+                  {result.loyer.explication}
+                </p>
+              </div>
+
+              <div className="bg-white rounded-lg shadow p-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <Gavel className="w-5 h-5 text-gray-800" />
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    Fiscalité conseillée
+                  </h3>
+                </div>
+                <p className="text-xl font-bold text-gray-900">
+                  {result.fiscalite.regime}
+                </p>
+                <p className="text-sm text-gray-600 mt-1">
+                  {result.fiscalite.explication}
+                </p>
+              </div>
+
+              <div className="bg-white rounded-lg shadow p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Lightbulb className="w-5 h-5 text-gray-800" />
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    Stratégie optimale
+                  </h3>
+                </div>
+                <p className="text-gray-700">{result.strategie}</p>
+              </div>
             </div>
 
-            <div>
-              <p className="text-lg font-medium text-gray-700">
-                Fiscalité conseillée :
-              </p>
-              <p className="text-gray-800 font-semibold">
-                {result.fiscalite.regime}
-              </p>
-              <p className="text-sm text-gray-600">
-                {result.fiscalite.explication}
-              </p>
-            </div>
-
-            <div>
-              <p className="font-medium text-gray-700 mb-2">
-                Recommandations :
-              </p>
-              <ul className="list-disc list-inside text-gray-600 space-y-1">
+            <div className="bg-white rounded-lg shadow p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <Wrench className="w-5 h-5 text-gray-800" />
+                <h3 className="text-lg font-semibold text-gray-800">
+                  Recommandations
+                </h3>
+              </div>
+              <ul className="list-disc list-inside text-gray-700 space-y-1">
                 {result.recommandations.map((r, i) => (
                   <li key={i}>{r}</li>
                 ))}
               </ul>
             </div>
 
-            <div>
-              <p className="font-medium text-gray-700 mb-2">Points forts :</p>
-              <ul className="list-disc list-inside text-gray-600 space-y-1">
-                {result.forces.map((f, i) => (
-                  <li key={i}>{f}</li>
-                ))}
-              </ul>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <div className="flex items-center gap-2 mb-2">
+                  <CheckCircle className="w-5 h-5 text-green-700" />
+                  <h3 className="text-lg font-semibold text-green-700">
+                    Points forts
+                  </h3>
+                </div>
+                <ul className="list-disc list-inside text-gray-700 space-y-1">
+                  {result.forces.map((f, i) => (
+                    <li key={i}>{f}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+                <div className="flex items-center gap-2 mb-2">
+                  <XCircle className="w-5 h-5 text-red-700" />
+                  <h3 className="text-lg font-semibold text-red-700">
+                    Points faibles
+                  </h3>
+                </div>
+                <ul className="list-disc list-inside text-gray-700 space-y-1">
+                  {result.faiblesses.map((f, i) => (
+                    <li key={i}>{f}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            <div>
-              <p className="font-medium text-gray-700 mb-2">Points faibles :</p>
-              <ul className="list-disc list-inside text-gray-600 space-y-1">
-                {result.faiblesses.map((f, i) => (
-                  <li key={i}>{f}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <p className="font-medium text-gray-700 mb-2">
-                Stratégie optimale :
-              </p>
-              <p className="text-gray-700">{result.strategie}</p>
-            </div>
-
-            <div>
-              <p className="font-medium text-gray-700 mb-2">
-                Questions à poser :
-              </p>
-              <ul className="list-disc list-inside text-gray-600 space-y-1">
+            <div className="bg-white rounded-lg shadow p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <HelpCircle className="w-5 h-5 text-gray-800" />
+                <h3 className="text-lg font-semibold text-gray-800">
+                  Questions à poser
+                </h3>
+              </div>
+              <ul className="list-disc list-inside text-gray-700 space-y-1">
                 {result.questions.map((q, i) => (
                   <li key={i}>{q}</li>
                 ))}
               </ul>
             </div>
-          </div>
+          </section>
         )}
       </main>
 
