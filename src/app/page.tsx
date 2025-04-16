@@ -486,42 +486,111 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-gray-50 animate-fade-in">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl/12 font-[400] text-center mb-12">
+      <section className="bg-gray-50 py-20 px-6 md:px-20" id="faq">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl/12 font-[400] text-gray-900 mb-4">
             Questions fréquentes
           </h2>
-          <div className="space-y-8">
-            <div className="p-6 bg-white rounded-xl shadow-sm hover:translate-x-1 transition-transform duration-300">
-              <h3 className="text-xl font-[300] mb-2">
-                Dois-je créer un compte ?
-              </h3>
-              <p className="text-gray-600">
-                Non, vous pouvez tester l'outil gratuitement sans inscription.
-                Créez un compte uniquement si vous souhaitez sauvegarder vos
-                analyses.
-              </p>
-            </div>
-            <div className="p-6 bg-white rounded-xl shadow-sm hover:translate-x-1 transition-transform duration-300">
-              <h3 className="text-xl font-[300] mb-2">
-                L'outil est-il fiable ?
-              </h3>
-              <p className="text-gray-600">
-                Notre IA est entraînée sur des milliers d'annonces et de cas
-                réels. Les analyses sont basées sur des critères objectifs et
-                des données vérifiées.
-              </p>
-            </div>
-            <div className="p-6 bg-white rounded-xl shadow-sm hover:translate-x-1 transition-transform duration-300">
-              <h3 className="text-xl font-[300] mb-2">
-                Puis-je analyser plusieurs annonces ?
-              </h3>
-              <p className="text-gray-600">
-                Oui, vous pouvez analyser autant d'annonces que vous le
-                souhaitez. La version gratuite offre 3 analyses par mois.
-              </p>
-            </div>
+          <p className="text-gray-600 mb-12 text-lg">
+            Tout ce que vous devez savoir avant de vous lancer avec PropertAI.
+          </p>
+
+          <div className="space-y-4 text-left">
+            <details className="bg-white rounded-xl shadow-md p-5 group">
+              <summary className="cursor-pointer list-none font-medium text-lg text-gray-900 flex justify-between items-center">
+                <span>Comment fonctionne l’analyse d’annonce ?</span>
+                <svg
+                  className="w-5 h-5 transition-transform group-open:rotate-180 text-blue-500"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </summary>
+              <div className="mt-4 text-gray-600">
+                Copiez la description d’un bien immobilier dans l’outil, et
+                PropertAI génère instantanément une analyse de rentabilité et
+                des leviers d’optimisation (colocation, division, LCD…).
+              </div>
+            </details>
+
+            <details className="bg-white rounded-xl shadow-md p-5 group">
+              <summary className="cursor-pointer list-none font-medium text-lg text-gray-900 flex justify-between items-center">
+                <span>Est-ce que PropertAI fonctionne partout en France ?</span>
+                <svg
+                  className="w-5 h-5 transition-transform group-open:rotate-180 text-blue-500"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </summary>
+              <div className="mt-4 text-gray-600">
+                Oui, l’outil est conçu pour analyser tout bien situé en France,
+                peu importe la ville ou la taille du marché local.
+              </div>
+            </details>
+
+            <details className="bg-white rounded-xl shadow-md p-5 group">
+              <summary className="cursor-pointer list-none font-medium text-lg text-gray-900 flex justify-between items-center">
+                <span>
+                  Dois-je m’y connaître en immobilier pour utiliser l’outil ?
+                </span>
+                <svg
+                  className="w-5 h-5 transition-transform group-open:rotate-180 text-blue-500"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </summary>
+              <div className="mt-4 text-gray-600">
+                Pas du tout ! L’outil vous guide pas à pas et vous livre des
+                recommandations claires, même si vous débutez dans
+                l’investissement.
+              </div>
+            </details>
+
+            <details className="bg-white rounded-xl shadow-md p-5 group">
+              <summary className="cursor-pointer list-none font-medium text-lg text-gray-900 flex justify-between items-center">
+                <span>PropertAI me donne-t-il une estimation des loyers ?</span>
+                <svg
+                  className="w-5 h-5 transition-transform group-open:rotate-180 text-blue-500"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </summary>
+              <div className="mt-4 text-gray-600">
+                Oui, l’IA fournit une estimation réaliste des loyers attendus
+                selon les caractéristiques du bien et sa localisation.
+              </div>
+            </details>
           </div>
         </div>
       </section>
