@@ -31,6 +31,17 @@ body {
   background-size: 100% 100%;
 }
 
+.fade-to-transparent-top::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px; /* hauteur du fondu */
+  background: linear-gradient(to top, white, transparent);
+  pointer-events: none;
+}
+
 @keyframes gradient {
   0% {
     background-position: 0% 50%;

@@ -10,7 +10,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative pt-30 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Background Gradient */}
-        <div className="absolute inset-0 hero-gradient" />
+        <div className="absolute inset-0 hero-gradient fade-to-transparent-top" />
 
         {/* Geometric Pattern */}
         <div className="absolute inset-0 geometric-pattern" />
