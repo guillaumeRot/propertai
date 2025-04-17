@@ -40,6 +40,7 @@ export default function AnalysePage() {
       prixAffiche: string;
       prixM2Quartier: string;
       commentaire: string;
+      positionnement: "bonne_affaire" | "negociable" | "surcote";
     };
   }
 
@@ -97,6 +98,7 @@ export default function AnalysePage() {
           prixM2Quartier: "3 800 €/m²",
           commentaire:
             "Le bien est affiché au-dessus du prix moyen local. Une négociation autour de 7 à 10% semble raisonnable.",
+          positionnement: "negociable", // valeurs possibles : 'bonne_affaire', 'negociable', 'surcote'
         },
       });
       setLoading(false);
@@ -237,6 +239,24 @@ export default function AnalysePage() {
                     <h3 className="text-lg font-semibold text-gray-800">
                       Estimation du bien
                     </h3>
+
+                    {/* Badge positionnement */}
+                    {result.estimationBien.positionnement ===
+                      "bonne_affaire" && (
+                      <span className="ml-2 px-2 py-1 text-xs font-semibold bg-green-100 text-green-700 rounded-full">
+                        Bonne affaire
+                      </span>
+                    )}
+                    {result.estimationBien.positionnement === "negociable" && (
+                      <span className="ml-2 px-2 py-1 text-xs font-semibold bg-yellow-100 text-yellow-800 rounded-full">
+                        Prix négociable
+                      </span>
+                    )}
+                    {result.estimationBien.positionnement === "surcote" && (
+                      <span className="ml-2 px-2 py-1 text-xs font-semibold bg-red-100 text-red-700 rounded-full">
+                        Prix surcôté
+                      </span>
+                    )}
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-4 text-gray-700">
