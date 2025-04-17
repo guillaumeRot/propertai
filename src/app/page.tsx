@@ -34,12 +34,12 @@ export default function Home() {
             en France
           </p>
           <h1 className="text-4xl sm:text-5xl/16 font-[600] text-gray-900 mb-8">
-            Décelez la vraie rentabilité derrière n'importe quelle annonce
-            immobilière
+            Repérez les pépites. <br />
+            Évitez les mauvaises surprises.
           </h1>
           <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-            Analysez instantanément n'importe quelle annonce et découvrez ses
-            leviers de rentabilité cachés grâce à l'IA.
+            Analysez instantanément n'importe quelle annonce immobilière et
+            découvrez ses leviers de rentabilité cachés grâce à l'IA.
           </p>
           <div className="max-w-2xl mx-auto">
             <textarea
