@@ -58,64 +58,20 @@ export default function AnalysePage() {
     setLoading(true);
     setResult(null);
 
-    setTimeout(() => {
-      setResult({
-        rentabilite: "7.8%",
-        loyer: {
-          estimation: "1 100 €/mois",
-          explication: "Loyer estimé selon la surface et les loyers moyens.",
-        },
-        explicationLoyer:
-          "Estimé selon la surface et les loyers moyens du quartier.",
-        fiscalite: {
-          regime: "LMNP réel",
-          explication:
-            "Permet de déduire les charges et amortissements du revenu imposable.",
-        },
-        explicationFiscalite:
-          "Permet d’amortir le bien et de réduire fortement l’imposition sur les revenus locatifs.",
-        recommandations: [
-          "Diviser le bien en 2 lots pour augmenter le rendement.",
-          "Passer en colocation meublée pour optimiser la fiscalité.",
-        ],
-        forces: ["Emplacement central", "Proche des transports"],
-        faiblesses: [
-          "Copropriété vieillissante avec parties communes à rafraîchir",
-          "Électricité à remettre aux normes (tableau, prises, disjoncteurs)",
-          "Isolation thermique insuffisante (fenêtres simple vitrage, murs non isolés)",
-          "Travaux de rafraîchissement intérieur : peinture, sols, cuisine et salle de bain à moderniser",
-          "Toiture ancienne : à contrôler lors du diagnostic technique global (DTG)",
-        ],
-        questions: [
-          "Y a-t-il une cave ou des combles exploitables ?",
-          "Le bien est-il conforme aux normes électriques ?",
-          "L’installation de gaz a-t-elle moins de 15 ans ou a-t-elle été contrôlée récemment ?",
-          "Le DPE est-il supérieur à F (passoires énergétiques bientôt interdites à la location) ?",
-          "Le système de ventilation est-il adapté (notamment pour la colocation) ?",
-          "Le logement respecte-t-il la surface minimale pour la location (9 m² et 2,2 m de hauteur) ?",
-          "Présence de plomb ou d’amiante dans les diagnostics obligatoires ?",
-          "L’immeuble prévoit-il des travaux dans les 3 prochaines années (ravalement, toiture, etc.) ?",
-        ],
-        strategie:
-          "Stratégie de colocation meublée en LMNP réel pour optimiser les revenus nets et la fiscalité.",
-        estimationBien: {
-          estimation: "198 000 €",
-          prixAffiche: "215 000 €",
-          prixM2Quartier: "3 800 €/m²",
-          commentaire:
-            "Le bien est affiché au-dessus du prix moyen local. Une négociation autour de 7 à 10% semble raisonnable.",
-          positionnement: "negociable", // valeurs possibles : 'bonne_affaire', 'negociable', 'surcote'
-        },
-        tensionLocative: {
-          estZoneTendue: true,
-          commentaire:
-            "Le bien est situé dans une zone tendue : la demande locative est forte, ce qui limite le risque de vacance.",
-          infoReglementaire:
-            "Encadrement des loyers, préavis réduit à 1 mois pour les locataires, taxe sur les logements vacants.",
-        },
+    try {
+      const res = await fetch("/api/analyse", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ description }),
       });
-      setLoading(false);
-    }, 1500);
+
+      const data = await res.json();
+      setResult(data.result);
+    } catch (err) {
+      console.error("Erreur d'analyse", err);
+    }
+
+    setLoading(false);
   };
 
   const handleExportPDF = () => {
