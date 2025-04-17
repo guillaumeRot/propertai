@@ -12,6 +12,7 @@ import {
   HelpCircle,
   Lightbulb,
   Loader2,
+  TriangleAlert,
   Wrench,
   XCircle,
 } from "lucide-react";
@@ -41,6 +42,11 @@ export default function AnalysePage() {
       prixM2Quartier: string;
       commentaire: string;
       positionnement: "bonne_affaire" | "negociable" | "surcote";
+    };
+    tensionLocative: {
+      estZoneTendue: boolean;
+      commentaire: string;
+      infoReglementaire: string;
     };
   }
 
@@ -99,6 +105,13 @@ export default function AnalysePage() {
           commentaire:
             "Le bien est affiché au-dessus du prix moyen local. Une négociation autour de 7 à 10% semble raisonnable.",
           positionnement: "negociable", // valeurs possibles : 'bonne_affaire', 'negociable', 'surcote'
+        },
+        tensionLocative: {
+          estZoneTendue: true,
+          commentaire:
+            "Le bien est situé dans une zone tendue : la demande locative est forte, ce qui limite le risque de vacance.",
+          infoReglementaire:
+            "Encadrement des loyers, préavis réduit à 1 mois pour les locataires, taxe sur les logements vacants.",
         },
       });
       setLoading(false);
@@ -230,6 +243,41 @@ export default function AnalysePage() {
                       </h3>
                     </div>
                     <p className="text-gray-700">{result.strategie}</p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg shadow p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <TriangleAlert
+                      className={`w-5 h-5 ${
+                        result.tensionLocative.estZoneTendue
+                          ? "text-orange-500"
+                          : "text-gray-500"
+                      }`}
+                    />
+                    <h3 className="text-lg font-semibold text-gray-800">
+                      Tension locative
+                    </h3>
+                    <span
+                      className={`ml-2 px-2 py-1 text-xs font-semibold rounded-full ${
+                        result.tensionLocative.estZoneTendue
+                          ? "bg-orange-100 text-orange-700"
+                          : "bg-gray-100 text-gray-600"
+                      }`}
+                    >
+                      {result.tensionLocative.estZoneTendue
+                        ? "Zone tendue"
+                        : "Zone non tendue"}
+                    </span>
+                  </div>
+
+                  <div className="text-gray-700 space-y-2">
+                    <p>{result.tensionLocative.commentaire}</p>
+                    {result.tensionLocative.estZoneTendue && (
+                      <p className="text-sm text-gray-500">
+                        {result.tensionLocative.infoReglementaire}
+                      </p>
+                    )}
                   </div>
                 </div>
 
