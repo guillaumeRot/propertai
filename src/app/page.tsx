@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { CircleCheck, CircleCheckBig, CircleX } from "lucide-react"; // Ajoutez les icônes nécessaires
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
         <div className="absolute inset-0 geometric-pattern" />
 
         <div className="relative max-w-5xl mx-auto text-center">
-          <p className="mb-4 inline-flex items-center text-sm font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full shadow-sm italic">
+          <p className="mb-6 inline-flex items-center text-sm font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full shadow-sm italic">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-4 h-4 mr-2"
@@ -33,8 +34,8 @@ export default function Home() {
             Déjà plus de 100 analyses réalisées pour des investisseurs partout
             en France
           </p>
-          <h1 className="text-5xl sm:text-6xl/16 font-bold text-gray-900 mb-8">
-            Repérez les pépites. <br />
+          <h1 className="text-5xl sm:text-6xl/18 font-bold text-gray-900 mb-8">
+            Repérez les <span className="text-orange-500">pépites.</span> <br />
             Évitez les mauvaises surprises.
           </h1>
           <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
@@ -43,7 +44,7 @@ export default function Home() {
           </p>
           <div className="max-w-2xl mx-auto">
             <textarea
-              className="w-full h-32 p-4 border border-blue-500 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none mb-4"
+              className="w-full h-32 p-4 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none mb-4"
               placeholder="Collez ici le texte d'une annonce immobilière..."
             />
             <button className="w-full sm:w-auto px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium cursor-pointer">
@@ -55,9 +56,9 @@ export default function Home() {
       {/* Problems & Solutions Section */}
       <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl/12 font-[400] text-center mb-4">
-            Vous perdez du temps à évaluer des biens <br /> qui ne valent pas le
-            coup ?
+          <h2 className="text-3xl sm:text-4xl/12 font-semibold text-center mb-4">
+            Vous <span className="text-orange-500">perdez du temps</span> à
+            évaluer des biens <br /> qui ne valent pas le coup ?
           </h2>
           <p className="mt-6 text-lg leading-8 text-[#3A3A3A] text-center mx-auto mb-12">
             PropertAI analyse pour vous les annonces et révèle leur vrai
@@ -232,8 +233,9 @@ export default function Home() {
       </section>
       <section className="bg-white py-16 px-4 sm:px-8 lg:px-16">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl/12 font-[400] text-center text-gray-900 mb-4">
-            Comment PropertAI se distingue <br />
+          <h2 className="text-3xl sm:text-4xl/12 font-semibold text-center text-gray-900 mb-4">
+            Comment <span className="text-orange-500">PropertAI</span> se
+            distingue <br />
             des autres outils du marché ?
           </h2>
           <p className="text-center text-gray-600 mb-12">
@@ -255,8 +257,15 @@ export default function Home() {
                   <th className="px-6 py-4 font-semibold text-sm text-center">
                     MeilleursAgents & co
                   </th>
-                  <th className="px-6 py-4 font-bold text-lg bg-blue-100 text-blue-500 text-center">
-                    PropertAI
+                  {/* <th className="px-6 py-4 font-bold text-lg bg-blue-500 text-white text-center"> */}
+                  <th className="px-6 py-4 bg-blue-500 text-center">
+                    <Image
+                      src="/logo_orange_blanc.png"
+                      alt="Logo"
+                      width={100}
+                      height={100}
+                      className="mx-auto"
+                    />
                   </th>
                 </tr>
               </thead>
@@ -470,11 +479,12 @@ export default function Home() {
       </section>
       <section className="bg-gray-50 py-20 px-6 md:px-20" id="faq">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl/12 font-[400] text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl/12 font-semibold text-gray-900 mb-4">
             Questions fréquentes
           </h2>
           <p className="text-gray-600 mb-12 text-lg">
-            Tout ce que vous devez savoir avant de vous lancer avec PropertAI.
+            Tout ce que vous devez savoir avant de vous lancer avec{" "}
+            <span className="text-orange-500">PropertAI</span>.
           </p>
 
           <div className="space-y-4 text-left">
@@ -579,12 +589,15 @@ export default function Home() {
       <section className="overflow-hidden py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl/12 font-[400] text-gray-900">
-              Ils ont testé, ils recommandent.
+            <h2 className="text-3xl sm:text-4xl/12 font-semibold text-gray-900">
+              Ils ont testé, ils{" "}
+              <span className="text-orange-500">recommandent</span>.
             </h2>
             <p className="text-gray-600 mt-2">
-              Des investisseurs de toute la France utilisent déjà PropertAI pour
-              gagner du temps et prendre de meilleures décisions.
+              Des investisseurs de toute la France utilisent déjà{" "}
+              <span className="text-orange-500">PropertAI</span> pour gagner du
+              temps et prendre de{" "}
+              <span className="text-orange-500">meilleures décisions</span>.
             </p>
           </div>
 
@@ -708,12 +721,13 @@ export default function Home() {
             en France
           </p>
 
-          <h2 className="text-3xl sm:text-4xl/12 font-[400] text-gray-800 leading-tight mb-4">
-            Collez une description. Obtenez une analyse.
+          <h2 className="text-3xl sm:text-4xl/12 font-semibold text-gray-800 leading-tight mb-4">
+            Collez une <span className="text-orange-500">description</span>.{" "}
+            <br /> Obtenez une <span className="text-orange-500">analyse</span>.
           </h2>
           <p className="text-gray-600 mb-8 text-base sm:text-lg">
-            PropertAI transforme n'importe quelle annonce en rapport clair et
-            actionnable.
+            <span className="text-orange-500">PropertAI</span> transforme
+            n'importe quelle annonce en rapport clair et actionnable.
             <br className="hidden sm:block" /> Gratuit, instantané, sans
             inscription.
           </p>
