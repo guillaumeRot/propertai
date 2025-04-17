@@ -477,6 +477,167 @@ export default function Home() {
           </p>
         </div>
       </section>
+      <section id="pricing" className="bg-white py-24 px-6">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            Choisissez le plan qui vous convient
+          </h2>
+          <p className="text-gray-600 text-lg mb-12">
+            Commencez gratuitement, puis débloquez tout le potentiel de
+            PropertAI avec les formules premium.
+          </p>
+
+          <div className="grid gap-8 grid-cols-1 md:grid-cols-3">
+            <div className="border rounded-xl p-6 shadow-sm flex flex-col justify-between">
+              <div>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                  Gratuit
+                </h3>
+                <p className="text-gray-500 mb-4">3 analyses sans export PDF</p>
+                <p className="text-3xl font-bold text-gray-900 mb-6">0 €</p>
+                <br />
+                <ul className="text-left text-gray-600 space-y-2 mb-8">
+                  <li className="flex gap-4 h-full items-center">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500"
+                      aria-hidden="true"
+                    />{" "}
+                    3 analyses
+                  </li>
+                  <li className="flex gap-4 h-full items-center">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500"
+                      aria-hidden="true"
+                    />{" "}
+                    Recommandations IA
+                  </li>
+                  <li className="flex gap-4 h-full items-center">
+                    <CircleX
+                      className="w-8 h-8 text-red-500"
+                      aria-hidden="true"
+                    />{" "}
+                    Pas d'export PDF
+                  </li>
+                </ul>
+              </div>
+              <a
+                href="/analyse"
+                className="mt-auto inline-block bg-orange-500 hover:bg-orange-600 text-white text-center font-semibold py-3 px-6 rounded-md transition"
+              >
+                Tester gratuitement
+              </a>
+            </div>
+
+            <div className="border-2 border-orange-500 rounded-xl p-6 shadow-md bg-orange-50 flex flex-col justify-between">
+              <div>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2 flex items-center justify-center gap-2">
+                  Sans engagement
+                  <span className="bg-orange-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                    Le plus populaire
+                  </span>
+                </h3>
+                <p className="text-gray-500 mb-4">
+                  Export PDF, sans engagement
+                </p>
+                <p className="text-3xl font-bold text-gray-900 mb-6">
+                  12 €<span className="text-base font-medium">/mois</span>
+                </p>
+                <br />
+                <ul className="text-left text-gray-700 space-y-2 mb-8">
+                  <li className="flex gap-4 h-full items-center">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500"
+                      aria-hidden="true"
+                    />{" "}
+                    200 Analyses / mois
+                  </li>
+                  <li className="flex gap-4 h-full items-center">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500"
+                      aria-hidden="true"
+                    />{" "}
+                    Export PDF
+                  </li>
+                  <li className="flex gap-4 h-full items-center">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500"
+                      aria-hidden="true"
+                    />{" "}
+                    Historique des analyses
+                  </li>
+                  <li className="flex gap-4 h-full items-center">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500"
+                      aria-hidden="true"
+                    />{" "}
+                    Résiliable à tout moment
+                  </li>
+                </ul>
+              </div>
+              <a
+                href="/abonnement"
+                className="mt-auto inline-block bg-orange-500 hover:bg-orange-600 text-white text-center font-semibold py-3 px-6 rounded-md transition"
+              >
+                S’abonner
+              </a>
+            </div>
+
+            <div className="border rounded-xl p-6 shadow-sm flex flex-col justify-between">
+              <div>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                  Engagement annuel
+                </h3>
+                <p className="text-gray-500 mb-4">
+                  Meilleur tarif, engagement 12 mois
+                </p>
+                <p className="text-3xl font-bold text-gray-900 mb-2">
+                  96 €<span className="text-base font-medium">/an</span>
+                </p>
+                <p className="text-sm text-green-600 mb-6">
+                  Soit 9 €/mois — économisez 25 %
+                </p>
+                <ul className="text-left text-gray-600 space-y-2 mb-8">
+                  <li className="flex gap-4 h-full items-center">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500"
+                      aria-hidden="true"
+                    />{" "}
+                    200 Analyses / mois
+                  </li>
+                  <li className="flex gap-4 h-full items-center">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500"
+                      aria-hidden="true"
+                    />{" "}
+                    Export PDF
+                  </li>
+                  <li className="flex gap-4 h-full items-center">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500"
+                      aria-hidden="true"
+                    />{" "}
+                    Historique des analyses
+                  </li>
+                  <li className="flex gap-4 h-full items-center">
+                    <CircleCheck
+                      className="w-8 h-8 text-green-500"
+                      aria-hidden="true"
+                    />{" "}
+                    Paiement 1x ou mensuel
+                  </li>
+                </ul>
+              </div>
+              <a
+                href="/abonnement-annuel"
+                className="mt-auto inline-block bg-orange-500 hover:bg-orange-600 text-white text-center font-semibold py-3 px-6 rounded-md transition"
+              >
+                Choisir cette offre
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-gray-50 py-20 px-6 md:px-20" id="faq">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl/12 font-semibold text-gray-900 mb-4">
