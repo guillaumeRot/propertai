@@ -14,7 +14,7 @@ export default function Home() {
         {/* Geometric Pattern */}
         <div className="absolute inset-0 geometric-pattern" />
 
-        <div className="relative max-w-4xl mx-auto text-center">
+        <div className="relative max-w-5xl mx-auto text-center">
           <p className="mb-4 inline-flex items-center text-sm font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full shadow-sm italic">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +33,7 @@ export default function Home() {
             Déjà plus de 100 analyses réalisées pour des investisseurs partout
             en France
           </p>
-          <h1 className="text-4xl sm:text-5xl/16 font-[600] text-gray-900 mb-8">
+          <h1 className="text-5xl sm:text-6xl/16 font-bold text-gray-900 mb-8">
             Repérez les pépites. <br />
             Évitez les mauvaises surprises.
           </h1>
@@ -46,7 +46,7 @@ export default function Home() {
               className="w-full h-32 p-4 border border-blue-500 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none mb-4"
               placeholder="Collez ici le texte d'une annonce immobilière..."
             />
-            <button className="w-full sm:w-auto px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium">
+            <button className="w-full sm:w-auto px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium cursor-pointer">
               Analyser cette annonce
             </button>
           </div>
@@ -59,7 +59,7 @@ export default function Home() {
             Vous perdez du temps à évaluer des biens <br /> qui ne valent pas le
             coup ?
           </h2>
-          <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
+          <p className="mt-6 text-lg leading-8 text-[#3A3A3A] text-center mx-auto mb-12">
             PropertAI analyse pour vous les annonces et révèle leur vrai
             potentiel d'investissement.
           </p>
