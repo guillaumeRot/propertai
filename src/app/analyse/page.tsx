@@ -18,8 +18,33 @@ import {
 import { useState } from "react";
 
 export default function AnalysePage() {
+  interface AnalyseResult {
+    rentabilite: string;
+    loyer: {
+      estimation: string;
+      explication: string;
+    };
+    explicationLoyer: string;
+    fiscalite: {
+      regime: string;
+      explication: string;
+    };
+    explicationFiscalite: string;
+    recommandations: string[];
+    forces: string[];
+    faiblesses: string[];
+    questions: string[];
+    strategie: string;
+    estimationBien: {
+      estimation: string;
+      prixAffiche: string;
+      prixM2Quartier: string;
+      commentaire: string;
+    };
+  }
+
   const [description, setDescription] = useState("");
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<AnalyseResult | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleAnalyse = async () => {
@@ -29,10 +54,17 @@ export default function AnalysePage() {
     setTimeout(() => {
       setResult({
         rentabilite: "7.8%",
-        loyer: "1 100 €/mois",
+        loyer: {
+          estimation: "1 100 €/mois",
+          explication: "Loyer estimé selon la surface et les loyers moyens.",
+        },
         explicationLoyer:
           "Estimé selon la surface et les loyers moyens du quartier.",
-        fiscalite: "LMNP réel",
+        fiscalite: {
+          regime: "LMNP réel",
+          explication:
+            "Permet de déduire les charges et amortissements du revenu imposable.",
+        },
         explicationFiscalite:
           "Permet d’amortir le bien et de réduire fortement l’imposition sur les revenus locatifs.",
         recommandations: [
@@ -40,10 +72,32 @@ export default function AnalysePage() {
           "Passer en colocation meublée pour optimiser la fiscalité.",
         ],
         forces: ["Emplacement central", "Proche des transports"],
-        faiblesses: ["Copropriété vieillissante", "Travaux à prévoir"],
-        questions: ["Y a-t-il une cave ou des combles exploitables ?"],
+        faiblesses: [
+          "Copropriété vieillissante avec parties communes à rafraîchir",
+          "Électricité à remettre aux normes (tableau, prises, disjoncteurs)",
+          "Isolation thermique insuffisante (fenêtres simple vitrage, murs non isolés)",
+          "Travaux de rafraîchissement intérieur : peinture, sols, cuisine et salle de bain à moderniser",
+          "Toiture ancienne : à contrôler lors du diagnostic technique global (DTG)",
+        ],
+        questions: [
+          "Y a-t-il une cave ou des combles exploitables ?",
+          "Le bien est-il conforme aux normes électriques ?",
+          "L’installation de gaz a-t-elle moins de 15 ans ou a-t-elle été contrôlée récemment ?",
+          "Le DPE est-il supérieur à F (passoires énergétiques bientôt interdites à la location) ?",
+          "Le système de ventilation est-il adapté (notamment pour la colocation) ?",
+          "Le logement respecte-t-il la surface minimale pour la location (9 m² et 2,2 m de hauteur) ?",
+          "Présence de plomb ou d’amiante dans les diagnostics obligatoires ?",
+          "L’immeuble prévoit-il des travaux dans les 3 prochaines années (ravalement, toiture, etc.) ?",
+        ],
         strategie:
           "Stratégie de colocation meublée en LMNP réel pour optimiser les revenus nets et la fiscalité.",
+        estimationBien: {
+          estimation: "198 000 €",
+          prixAffiche: "215 000 €",
+          prixM2Quartier: "3 800 €/m²",
+          commentaire:
+            "Le bien est affiché au-dessus du prix moyen local. Une négociation autour de 7 à 10% semble raisonnable.",
+        },
       });
       setLoading(false);
     }, 1500);
@@ -87,7 +141,7 @@ export default function AnalysePage() {
     <div className="bg-gray-50 min-h-screen flex flex-col">
       <Header />
 
-      <main className="flex-grow max-w-4xl mx-auto px-4 py-24">
+      <main className="flex-grow max-w-4xl mx-auto px-4 py-24 w-full">
         <h1 className="text-3xl font-bold text-center mb-8 text-gray-900">
           Analysez votre bien en un instant
         </h1>
@@ -174,6 +228,48 @@ export default function AnalysePage() {
                       </h3>
                     </div>
                     <p className="text-gray-700">{result.strategie}</p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg shadow p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Euro className="w-5 h-5 text-gray-800" />
+                    <h3 className="text-lg font-semibold text-gray-800">
+                      Estimation du bien
+                    </h3>
+                  </div>
+
+                  <div className="grid sm:grid-cols-2 gap-4 text-gray-700">
+                    <div>
+                      <p className="text-sm text-gray-500">
+                        Prix estimé par l’analyse :
+                      </p>
+                      <p className="text-lg font-bold">
+                        {result.estimationBien.estimation}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">
+                        Prix affiché dans l’annonce :
+                      </p>
+                      <p className="text-lg font-bold">
+                        {result.estimationBien.prixAffiche}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">
+                        Prix moyen au m² (quartier) :
+                      </p>
+                      <p className="text-lg font-bold">
+                        {result.estimationBien.prixM2Quartier}
+                      </p>
+                    </div>
+                    <div className="sm:col-span-2">
+                      <p className="text-sm text-gray-500">Analyse :</p>
+                      <p className="text-gray-700">
+                        {result.estimationBien.commentaire}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
