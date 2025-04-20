@@ -10,34 +10,47 @@ export async function POST(req: NextRequest) {
   const prompt = `
 Tu es un expert en investissement immobilier locatif. Ton rôle est d’analyser une description de bien immobilier pour en déduire ses caractéristiques clés, sa stratégie optimale, et sa rentabilité potentielle. Tu réponds toujours sous forme d’un objet JSON strictement valide, sans aucun texte autour.
 
-Voici la structure JSON à respecter :
+Tu dois respecter la structure suivante, avec les contraintes associées pour chaque champ :
 
 {
-  "rentabilite": string,
+  "rentabilite": string // Ex : "7.5%" — estimation brute basée sur le prix du bien et le loyer estimé
+
   "loyer": {
-    "estimation": string,
-    "explication": string
-  },
+    "estimation": string // Estimation calculée selon les loyers moyens observés dans le quartier pour un bien équivalent (type, surface, étage, équipements). Ignore les loyers indiqués dans l’annonce, ils peuvent être obsolètes ou sous-estimés.
+
+    "explication": string // Brève justification : sur quoi est basée l’estimation (surface, type de bien, localisation précise, marché local…)
+
+    // Si la stratégie recommandée est de passer en location meublée ou courte durée,
+    // alors loyer.estimation doit refléter cette stratégie et proposer un loyer supérieur à une location nue classique.
+  }
+
   "fiscalite": {
-    "regime": string,
-    "explication": string
-  },
-  "recommandations": string[],
-  "forces": string[],
-  "faiblesses": string[],
-  "questions": string[],
-  "strategie": string,
+    "regime": string // Exemples attendus : "LMNP réel", "Micro-foncier", "SCI à l’IS", "Régime réel"
+    "explication": string // Justification du régime choisi selon profil type d'investisseur
+  }
+
+  "recommandations": string[] // Conseils pour augmenter la rentabilité (division, colocation, LCD, meublé, changement fiscal, etc.)
+
+  "forces": string[] // Atouts du bien du point de vue investisseur (emplacement, potentiel fiscal, prestations, faible vacance…)
+
+  "faiblesses": string[] // Points faibles concrets (travaux à prévoir, isolation, charges élevées, accès, taille, DPE…)
+
+  "questions": string[] // Questions pertinentes à poser au vendeur ou à vérifier pour affiner l’analyse (diagnostics, copro, normes, surfaces…)
+
+  "strategie": string // Stratégie d’exploitation optimale (type de location, régime fiscal, type de locataire cible)
+
   "estimationBien": {
-    "estimation": string,
-    "prixAffiche": string,
-    "prixM2Quartier": string,
-    "commentaire": string,
-    "positionnement": string // valeurs possibles : 'bonne_affaire', 'negociable', 'surcote'
-  },
+    "estimation": string // Prix de marché estimé (ex : "198 000 €")
+    "prixAffiche": string // Prix indiqué dans l’annonce ou estimé (ex : "215 000 €")
+    "prixM2Quartier": string // Prix au m² dans le secteur (ex : "3 800 €/m²")
+    "commentaire": string // Analyse de la cohérence entre le prix affiché et les prix du marché
+    "positionnement": string // "bonne_affaire", "negociable", "surcote"
+  }
+
   "tensionLocative": {
-    "estZoneTendue": boolean,
-    "commentaire": string,
-    "infoReglementaire": string
+    "estZoneTendue": boolean // true si la ville est en zone tendue selon la législation française
+    "commentaire": string // Impact sur la vacance locative, la demande
+    "infoReglementaire": string // Rappel réglementaire : encadrement des loyers, préavis réduit, etc.
   }
 }
 
