@@ -25,9 +25,9 @@ export default function Home() {
               stroke="currentColor"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M13 10V3L4 14h7v7l9-11h-7z"
               />
             </svg>
@@ -47,9 +47,11 @@ export default function Home() {
               className="w-full h-32 p-4 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none mb-4"
               placeholder="Collez ici le texte d'une annonce immobilière..."
             />
-            <button className="w-full sm:w-auto px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium cursor-pointer">
-              Analyser cette annonce
-            </button>
+            <a href="/analyse">
+              <button className="w-full sm:w-auto px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium cursor-pointer">
+                Analyser cette annonce
+              </button>
+            </a>
           </div>
         </div>
       </section>
@@ -656,12 +658,12 @@ export default function Home() {
                   className="w-5 h-5 transition-transform group-open:rotate-180 text-blue-500"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                   viewBox="0 0 24 24"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M19 9l-7 7-7-7"
                   />
                 </svg>
@@ -680,12 +682,12 @@ export default function Home() {
                   className="w-5 h-5 transition-transform group-open:rotate-180 text-blue-500"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                   viewBox="0 0 24 24"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M19 9l-7 7-7-7"
                   />
                 </svg>
@@ -705,12 +707,12 @@ export default function Home() {
                   className="w-5 h-5 transition-transform group-open:rotate-180 text-blue-500"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                   viewBox="0 0 24 24"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M19 9l-7 7-7-7"
                   />
                 </svg>
@@ -729,12 +731,12 @@ export default function Home() {
                   className="w-5 h-5 transition-transform group-open:rotate-180 text-blue-500"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                   viewBox="0 0 24 24"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M19 9l-7 7-7-7"
                   />
                 </svg>
@@ -872,9 +874,9 @@ export default function Home() {
               stroke="currentColor"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M13 10V3L4 14h7v7l9-11h-7z"
               />
             </svg>
@@ -905,9 +907,9 @@ export default function Home() {
               stroke="currentColor"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M13 10V3L4 14h7v7l9-11h-7z"
               />
             </svg>
