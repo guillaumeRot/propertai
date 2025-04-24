@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model VilleIndicateur {
+  code_insee       String   @id
+  nom_commune      String
+  departement      String
+  prix_m2_achat    Float?
+  prix_m2_loyer    Float?
+  rendement_brut   Float? // pas généré automatiquement ici, tu peux le recalculer côté app
+  zone_tendue      Boolean?
+  tx_vacance       Float?
+  part_locataires  Float?
+  nb_habitants     Int?
+  nb_logements     Int?
+  type_zone        String?
+}
