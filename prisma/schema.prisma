@@ -14,16 +14,36 @@ datasource db {
 }
 
 model VilleIndicateur {
-  code_insee       String   @id
-  nom_commune      String
-  departement      String
-  prix_m2_achat    Float?
-  prix_m2_loyer    Float?
-  rendement_brut   Float? // pas généré automatiquement ici, tu peux le recalculer côté app
-  zone_tendue      Boolean?
-  tx_vacance       Float?
-  part_locataires  Float?
-  nb_habitants     Int?
-  nb_logements     Int?
-  type_zone        String?
+  code_insee                  String   @id
+  nom_commune                 String
+  departement                 String
+
+  // Nouveaux champs INSEE
+  population                  Int?      // P20_POP
+  nb_logements                Int?      // LOG
+  nb_residences_principales  Int?      // RP
+  nb_residences_secondaires  Int?      // RESSEC
+  nb_logements_vacants       Int?      // LOGVAC
+
+  part_proprietaires          Float?    // PROP / RP
+  part_locataires             Float?    // LOC / RP
+  part_loges_gratuitement    Float?    // GRAT / RP
+
+  taux_vacance                Float?    // LOGVAC / LOG
+
+  part_menages_1_personne     Float?    // PIMP / RP
+  part_menages_5_personnes    Float?    // PMEN5P / RP
+
+  part_diplomes_supp          Float?    // DIPL17_DIPSUP
+  part_mobilite_recent        Float?    // POP5P15P
+
+  // Déjà présents
+  prix_m2_achat_maison        Float?
+  prix_m2_achat_appartement   Float?
+  
+  loyer_m2_maison           Float?
+  loyer_m2_appart_petit     Float?
+  loyer_m2_appart_grand     Float?
+  
+  type_zone                  String?
 }
