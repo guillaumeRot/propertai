@@ -1,187 +1,174 @@
-// pages/api/analyse.ts
+import { PrismaClient } from "@prisma/client"; // adapte ce chemin si besoin
 import { NextRequest, NextResponse } from "next/server";
 import { OpenAI } from "openai";
 
+const prisma = new PrismaClient();
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 export async function POST(req: NextRequest) {
   const { description } = await req.json();
 
-  const prompt = `
-Tu es un expert en investissement immobilier locatif. Ton rôle est d’analyser une description de bien immobilier pour en déduire ses caractéristiques clés, sa stratégie optimale, et sa rentabilité potentielle. Tu réponds toujours sous forme d’un objet JSON strictement valide, sans aucun texte autour.
-
-Tu dois respecter la structure suivante, avec les contraintes associées pour chaque champ :
-
-{
-  "rentabilite": string // Ex : "7.5%" — estimation brute basée sur le prix du bien et le loyer estimé
-
-  "loyer": {
-    "estimation": string // Estimation calculée selon les loyers moyens observés dans le quartier pour un bien équivalent (type, surface, étage, équipements). Ignore les loyers indiqués dans l’annonce, ils peuvent être obsolètes ou sous-estimés.
-
-    "explication": string // Brève justification : sur quoi est basée l’estimation (surface, type de bien, localisation précise, marché local…)
-
-    // Si la stratégie recommandée est de passer en location meublée ou courte durée,
-    // alors loyer.estimation doit refléter cette stratégie et proposer un loyer supérieur à une location nue classique.
+  if (!description) {
+    return NextResponse.json(
+      { error: "Description manquante" },
+      { status: 400 }
+    );
   }
 
-  "fiscalite": {
-    "regime": string // Exemples attendus : "LMNP réel", "Micro-foncier", "SCI à l’IS", "Régime réel"
-    "explication": string // Justification du régime choisi selon profil type d'investisseur
+  let ville = null;
+
+  const extractionPrompt = `
+À partir de cette description immobilière, renvoie uniquement le **nom de la commune** sans aucun texte autour.
+
+"""${description}"""
+  `;
+
+  const extraction = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo-1106",
+    temperature: 0,
+    messages: [{ role: "user", content: extractionPrompt }],
+  });
+
+  const rawVille = extraction.choices[0].message.content?.trim();
+  console.log("🏙️ Ville extraite :", rawVille);
+
+  if (rawVille) {
+    ville = await prisma.villeIndicateur.findFirst({
+      where: {
+        nom_commune: {
+          equals: rawVille,
+          mode: "insensitive",
+        },
+      },
+    });
   }
 
-  "recommandations": string[] // Conseils pour augmenter la rentabilité (division, colocation, LCD, meublé, changement fiscal, etc.)
-
-  "forces": string[] // Atouts du bien du point de vue investisseur (emplacement, potentiel fiscal, prestations, faible vacance…)
-
-  "faiblesses": string[] // Points faibles concrets (travaux à prévoir, isolation, charges élevées, accès, taille, DPE…)
-
-  "questions": string[] // Questions pertinentes à poser au vendeur ou à vérifier pour affiner l’analyse (diagnostics, copro, normes, surfaces…)
-
-  "strategie": string // Stratégie d’exploitation optimale (type de location, régime fiscal, type de locataire cible)
-
-  "estimationBien": {
-    "estimation": string // Prix de marché estimé (ex : "198 000 €")
-    "prixAffiche": string // Prix indiqué dans l’annonce ou estimé (ex : "215 000 €")
-    "prixM2Quartier": string // Prix au m² dans le secteur (ex : "3 800 €/m²")
-    "commentaire": string // Analyse de la cohérence entre le prix affiché et les prix du marché
-    "positionnement": string // "bonne_affaire", "negociable", "surcote"
+  if (!ville) {
+    return NextResponse.json(
+      { error: "Commune introuvable en base" },
+      { status: 404 }
+    );
   }
 
-  "tensionLocative": {
-    "estZoneTendue": boolean // true si la ville est en zone tendue selon la législation française
-    "commentaire": string // Impact sur la vacance locative, la demande
-    "infoReglementaire": string // Rappel réglementaire : encadrement des loyers, préavis réduit, etc.
-  }
-}
+  console.log("✅ Commune trouvée :", ville.nom_commune);
+
+  // Prépare les données locales pour le prompt
+  const estZoneTendue = ["A", "A bis", "B1"].includes(ville.type_zone ?? "");
+
+  const dataLocal = {
+    prixM2AchatMaison: ville.prix_m2_achat_maison ?? "inconnu",
+    prixM2AchatAppartement: ville.prix_m2_achat_appartement ?? "inconnu",
+    loyerM2Maison: ville.loyer_m2_maison ?? "inconnu",
+    loyerM2AppartPetit: ville.loyer_m2_appart_petit ?? "inconnu",
+    loyerM2AppartGrand: ville.loyer_m2_appart_grand ?? "inconnu",
+    tauxVacance: ville.taux_vacance ?? "inconnu",
+    partLocataires: ville.part_locataires ?? "inconnu",
+    nbLogements: ville.nb_logements ?? "inconnu",
+    nbLogementsVacants: ville.nb_logements_vacants ?? "inconnu",
+    nbResidencesPrincipales: ville.nb_residences_principales ?? "inconnu",
+    nbResidencesSecondaires: ville.nb_residences_secondaires ?? "inconnu",
+    partDiplomesSuperieur: ville.part_diplomes_supp ?? "inconnu",
+    partLogesGratuit: ville.part_loges_gratuitement ?? "inconnu",
+    partMenages1P: ville.part_menages_1_personne ?? "inconnu",
+    partMenages5P: ville.part_menages_5_personnes ?? "inconnu",
+    partMobiliteRecent: ville.part_mobilite_recent ?? "inconnu",
+    population: ville.population ?? "inconnu",
+    zoneTendue: estZoneTendue ? "Oui" : "Non",
+  };
+
+  // 3️⃣ Créer le prompt final d'analyse enrichi
+  const promptAnalyse = `
+Tu es un expert en investissement immobilier. Ton rôle est d’analyser une description de bien immobilier pour en déduire :
+
+- Sa rentabilité brute estimée
+- La meilleure stratégie d'exploitation
+- Les forces et faiblesses du bien
+- Les questions clés à poser
+- La tension locative et les risques éventuels
+
+Voici les **données locales fiables** pour la commune "${ville.nom_commune}" :
+
+- Prix moyen achat maison : ${dataLocal.prixM2AchatMaison} €/m²
+- Prix moyen achat appartement : ${dataLocal.prixM2AchatAppartement} €/m²
+- Loyer moyen maison : ${dataLocal.loyerM2Maison} €/m²
+- Loyer moyen petit appartement : ${dataLocal.loyerM2AppartPetit} €/m²
+- Loyer moyen grand appartement : ${dataLocal.loyerM2AppartGrand} €/m²
+- Taux de vacance locative : ${dataLocal.tauxVacance}
+- Part des locataires : ${dataLocal.partLocataires}
+- Population totale : ${dataLocal.population}
+- Nombre de logements : ${dataLocal.nbLogements}
+- Nombre de logements vacants : ${dataLocal.nbLogementsVacants}
+- Nombre de résidences principales : ${dataLocal.nbResidencesPrincipales}
+- Nombre de résidences secondaires : ${dataLocal.nbResidencesSecondaires}
+- Part des diplômés supérieurs : ${dataLocal.partDiplomesSuperieur}
+- Part des personnes logées gratuitement : ${dataLocal.partLogesGratuit}
+- Part des ménages 1 personne : ${dataLocal.partMenages1P}
+- Part des ménages 5 personnes ou plus : ${dataLocal.partMenages5P}
+- Part de mobilité récente (<2 ans) : ${dataLocal.partMobiliteRecent}
+- Zone tendue : ${dataLocal.zoneTendue}
+
+⚠️ Si une ou plusieurs données locales sont "inconnues", fais la meilleure estimation possible basée sur la description du bien et ta connaissance générale du marché immobilier.
 
 ---
 
-Voici un exemple de description analysée et la réponse attendue :
-
-📄 Description :
-"Appartement T2 de 45 m² situé à Toulouse centre, à 3 min du métro, au 2e étage sans ascenseur, dans une petite copropriété bien entretenue. Chauffage individuel électrique, cuisine ouverte, salle de bain rénovée. Loyer estimé 750 €. Prix affiché 215 000 €."
-
-✅ Résultat attendu :
-
-{
-  "rentabilite": "6.3%",
-  "loyer": {
-    "estimation": "750 €/mois",
-    "explication": "Loyer basé sur les prix moyens observés pour des T2 similaires dans le centre de Toulouse."
-  },
-  "fiscalite": {
-    "regime": "LMNP réel",
-    "explication": "Permet de déduire les charges et d’amortir le bien pour réduire l’imposition."
-  },
-  "recommandations": [
-    "Prévoir un ameublement complet pour location meublée.",
-    "Optimiser les charges de copropriété pour améliorer la rentabilité nette."
-  ],
-  "forces": [
-    "Très bonne localisation",
-    "Proche métro et commodités",
-    "Bien rénové récemment"
-  ],
-  "faiblesses": [
-    "Étage sans ascenseur",
-    "Chauffage électrique (moins performant)"
-  ],
-  "questions": [
-    "Quel est le montant des charges de copropriété ?",
-    "Le bien est-il déjà loué ?",
-    "DPE à jour ? Classe énergétique ?",
-    "Travaux prévus dans la copropriété ?"
-  ],
-  "strategie": "Mise en location meublée en LMNP réel pour bénéficier d’un bon rendement et d’une fiscalité allégée.",
-  "estimationBien": {
-    "estimation": "198 000 €",
-    "prixAffiche": "215 000 €",
-    "prixM2Quartier": "3 800 €/m²",
-    "commentaire": "Le prix affiché est légèrement supérieur au marché. Une négociation de 7–10% semble raisonnable.",
-    "positionnement": "negociable"
-  },
-  "tensionLocative": {
-    "estZoneTendue": true,
-    "commentaire": "Le bien est en zone tendue : forte demande locative, rotation rapide.",
-    "infoReglementaire": "Encadrement des loyers, préavis réduit, taxe sur logements vacants."
-  }
-}
-
----
-
-Analyse maintenant cette nouvelle description :
+Voici la **description** du bien à analyser :
 
 """${description}"""
 
-Retourne **uniquement** un objet JSON **strictement valide** selon la structure ci-dessus. Aucun texte autour. Aucune explication.
+---
+
+✅ Ton analyse doit respecter **strictement** le format JSON suivant, sans texte autour :
+
+{
+  "rentabilite": "string (ex: '6.3%')",
+  "loyer": {
+    "estimation": "string (ex: '750 €/mois')",
+    "explication": "string"
+  },
+  "fiscalite": {
+    "regime": "string (ex: 'LMNP réel', 'Micro-foncier', 'SCI IS')",
+    "explication": "string"
+  },
+  "recommandations": [
+    "string", "string", ...
+  ],
+  "forces": [
+    "string", "string", ...
+  ],
+  "faiblesses": [
+    "string", "string", ...
+  ],
+  "questions": [
+    "string", "string", ...
+  ],
+  "strategie": "string",
+  "estimationBien": {
+    "estimation": "string (ex: '198 000 €')",
+    "prixAffiche": "string (ex: '215 000 €')",
+    "prixM2Quartier": "string (ex: '3 800 €/m²')",
+    "commentaire": "string",
+    "positionnement": "string ('bonne_affaire', 'negociable', 'surcote')"
+  },
+  "tensionLocative": {
+    "estZoneTendue": boolean,
+    "commentaire": "string",
+    "infoReglementaire": "string"
+  }
+}
 `;
+
+  console.log("Prompt :", promptAnalyse);
 
   const completion = await openai.chat.completions.create({
     model: "gpt-3.5-turbo-1106",
     temperature: 0.2,
-    messages: [{ role: "user", content: prompt }],
-    // response_format: "json", // disponible avec gpt-3.5-1106
+    messages: [{ role: "user", content: promptAnalyse }],
   });
 
-  console.log("TEST GUI completion :", completion);
   const raw = completion.choices[0].message.content;
-  console.log("TEST GUI raw :", raw);
-  const result = JSON.parse(raw!); // Assure-toi que le format soit propre
-  // const result = {
-  //   rentabilite: "7.8%",
-  //   loyer: {
-  //     estimation: "1 100 €/mois",
-  //     explication: "Loyer estimé selon la surface et les loyers moyens.",
-  //   },
-  //   explicationLoyer:
-  //     "Estimé selon la surface et les loyers moyens du quartier.",
-  //   fiscalite: {
-  //     regime: "LMNP réel",
-  //     explication:
-  //       "Permet de déduire les charges et amortissements du revenu imposable.",
-  //   },
-  //   explicationFiscalite:
-  //     "Permet d’amortir le bien et de réduire fortement l’imposition sur les revenus locatifs.",
-  //   recommandations: [
-  //     "Diviser le bien en 2 lots pour augmenter le rendement.",
-  //     "Passer en colocation meublée pour optimiser la fiscalité.",
-  //   ],
-  //   forces: ["Emplacement central", "Proche des transports"],
-  //   faiblesses: [
-  //     "Copropriété vieillissante avec parties communes à rafraîchir",
-  //     "Électricité à remettre aux normes (tableau, prises, disjoncteurs)",
-  //     "Isolation thermique insuffisante (fenêtres simple vitrage, murs non isolés)",
-  //     "Travaux de rafraîchissement intérieur : peinture, sols, cuisine et salle de bain à moderniser",
-  //     "Toiture ancienne : à contrôler lors du diagnostic technique global (DTG)",
-  //   ],
-  //   questions: [
-  //     "Y a-t-il une cave ou des combles exploitables ?",
-  //     "Le bien est-il conforme aux normes électriques ?",
-  //     "L’installation de gaz a-t-elle moins de 15 ans ou a-t-elle été contrôlée récemment ?",
-  //     "Le DPE est-il supérieur à F (passoires énergétiques bientôt interdites à la location) ?",
-  //     "Le système de ventilation est-il adapté (notamment pour la colocation) ?",
-  //     "Le logement respecte-t-il la surface minimale pour la location (9 m² et 2,2 m de hauteur) ?",
-  //     "Présence de plomb ou d’amiante dans les diagnostics obligatoires ?",
-  //     "L’immeuble prévoit-il des travaux dans les 3 prochaines années (ravalement, toiture, etc.) ?",
-  //   ],
-  //   strategie:
-  //     "Stratégie de colocation meublée en LMNP réel pour optimiser les revenus nets et la fiscalité.",
-  //   estimationBien: {
-  //     estimation: "198 000 €",
-  //     prixAffiche: "215 000 €",
-  //     prixM2Quartier: "3 800 €/m²",
-  //     commentaire:
-  //       "Le bien est affiché au-dessus du prix moyen local. Une négociation autour de 7 à 10% semble raisonnable.",
-  //     positionnement: "negociable", // valeurs possibles : 'bonne_affaire', 'negociable', 'surcote'
-  //   },
-  //   tensionLocative: {
-  //     estZoneTendue: true,
-  //     commentaire:
-  //       "Le bien est situé dans une zone tendue : la demande locative est forte, ce qui limite le risque de vacance.",
-  //     infoReglementaire:
-  //       "Encadrement des loyers, préavis réduit à 1 mois pour les locataires, taxe sur les logements vacants.",
-  //   },
-  // };
+  console.log("🧠 Analyse enrichie :", raw);
+
+  const result = JSON.parse(raw!);
 
   return NextResponse.json({ result });
 }

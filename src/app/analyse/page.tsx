@@ -282,7 +282,7 @@ export default function AnalysePage() {
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">
-                        Prix moyen au m² (quartier) :
+                        Prix moyen au m² :
                       </p>
                       <p className="text-lg font-bold">
                         {result.estimationBien.prixM2Quartier}
