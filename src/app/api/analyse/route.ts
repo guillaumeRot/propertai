@@ -107,6 +107,7 @@ Voici les **données locales fiables** pour la commune "${ville.nom_commune}" :
 - Part de mobilité récente (<2 ans) : ${dataLocal.partMobiliteRecent}
 - Zone tendue : ${dataLocal.zoneTendue}
 
+⚠️ Utilise strictement les données locales fournies ci-dessus sans les modifier ni les ajuster, sauf si elles sont explicitement inconnues.
 ⚠️ Si une ou plusieurs données locales sont "inconnues", fais la meilleure estimation possible basée sur la description du bien et ta connaissance générale du marché immobilier.
 
 ---
@@ -155,6 +156,11 @@ Voici la **description** du bien à analyser :
     "infoReglementaire": "string"
   }
 }
+
+---
+
+🔵 Instruction supplémentaire :
+- Dans le champ "loyer.explication", indique précisément le détail du calcul".
 `;
 
   console.log("Prompt :", promptAnalyse);
