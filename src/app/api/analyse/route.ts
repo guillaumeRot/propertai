@@ -123,11 +123,11 @@ Voici la **description** du bien à analyser :
 {
   "rentabilite": "string (ex: '6.3%')",
   "loyer": {
-    "estimation": "string (ex: '750 €/mois')",
+    "estimation": "string (multiplie le loyer moyen de maison, petit ou grand appartement selon le type du bien, par la surface de l'appartement. Si le contexte de l'annonce est important dans cette estimation, alors décris le dans l'explication. exemple: '750 €/mois')",
     "explication": "string"
   },
   "fiscalite": {
-    "regime": "string (ex: 'LMNP réel', 'Micro-foncier', 'SCI IS')",
+    "regime": "string (En LMNP, on ne peut plus amortir les biens, si il y a des travaux conseilles plutôt une SCI IS, sinon le micro-foncier, exemple: 'LMNP réel', 'Micro-foncier', 'SCI IS')",
     "explication": "string"
   },
   "recommandations": [
@@ -144,9 +144,9 @@ Voici la **description** du bien à analyser :
   ],
   "strategie": "string",
   "estimationBien": {
-    "estimation": "string (ex: '198 000 €')",
+    "estimation": "string (multiplie le prix moyen d'achat du type du bien par la surface, exemple: '198 000 €')",
     "prixAffiche": "string (ex: '215 000 €')",
-    "prixM2Quartier": "string (ex: '3 800 €/m²')",
+    "prixM2Quartier": "string (le prix moyen achat de maison ou appartemment selon le type du bien, exemple: '3 800 €/m²')",
     "commentaire": "string",
     "positionnement": "string ('bonne_affaire', 'negociable', 'surcote')"
   },
