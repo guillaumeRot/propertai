@@ -87,9 +87,11 @@ export default function AnalysePage() {
     let y = 20;
     let currentPage = 1;
 
-    const primaryColor = [33, 150, 243];
+    const primaryColor = [33, 150, 243]; // Bleu
     const backgroundColor = [240, 240, 240];
     const borderColor = [200, 200, 200];
+    const greenColor = [76, 175, 80];
+    const redColor = [244, 67, 54];
 
     // Logo
     doc.addImage(logoBase64, "PNG", marginLeft, y, 40, 8);
@@ -107,7 +109,18 @@ export default function AnalysePage() {
     doc.line(marginLeft, y, 190, y);
     y += 10;
 
-    const addSection = (title: string, content: string | string[]) => {
+    const addFooter = () => {
+      doc.setFontSize(10);
+      doc.setTextColor(130);
+      doc.text(`Page ${currentPage}`, 180, 285, { align: "right" });
+      doc.text("Généré avec PropertAI – www.propertai.fr", marginLeft, 285);
+    };
+
+    const addSection = (
+      title: string,
+      content: string | string[],
+      options?: { color?: number[] }
+    ) => {
       if (y > 240) {
         addFooter();
         doc.addPage();
@@ -123,6 +136,8 @@ export default function AnalysePage() {
       const lines = doc.splitTextToSize(text, contentWidth - 2 * padding);
       const boxHeight = lines.length * 6 + 16;
 
+      const sectionColor = options?.color ?? primaryColor;
+
       doc.setFillColor(
         backgroundColor[0],
         backgroundColor[1],
@@ -135,7 +150,7 @@ export default function AnalysePage() {
 
       doc.setFont("helvetica", "bold");
       doc.setFontSize(14);
-      doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+      doc.setTextColor(sectionColor[0], sectionColor[1], sectionColor[2]);
       doc.text(title, boxLeft + padding, y + 8);
 
       doc.setFont("helvetica", "normal");
@@ -146,14 +161,7 @@ export default function AnalysePage() {
       y += boxHeight + 6;
     };
 
-    const addFooter = () => {
-      doc.setFontSize(10);
-      doc.setTextColor(130);
-      doc.text(`Page ${currentPage}`, 180, 285, { align: "right" });
-      doc.text("Généré avec PropertAI – www.propertai.fr", marginLeft, 285);
-    };
-
-    // Sections détaillées
+    // Sections principales
     addSection("Rentabilité estimée", result.rentabilite);
     addSection(
       "Loyer estimé",
@@ -164,12 +172,11 @@ export default function AnalysePage() {
       `${result.fiscalite.regime}\n\n${result.fiscalite.explication}`
     );
     addSection("Recommandations", result.recommandations);
-    addSection("Points forts", result.forces);
-    addSection("Points faibles", result.faiblesses);
+    addSection("Points forts", result.forces, { color: greenColor });
+    addSection("Points faibles", result.faiblesses, { color: redColor });
     addSection("Questions à poser", result.questions);
     addSection("Stratégie optimale", result.strategie);
 
-    // Dernier pied de page
     addFooter();
     doc.save("rapport_propertai.pdf");
   };
