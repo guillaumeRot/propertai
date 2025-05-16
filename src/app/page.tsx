@@ -1,9 +1,23 @@
+"use client";
+
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { CircleCheck, CircleCheckBig, CircleX } from "lucide-react"; // Ajoutez les icônes nécessaires
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Home() {
+  const [description, setDescription] = useState("");
+  const router = useRouter();
+
+  const handleAnalyse = () => {
+    if (description.trim()) {
+      sessionStorage.setItem("analyseDescription", description);
+      router.push("/analyse");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -46,9 +60,14 @@ export default function Home() {
             <textarea
               className="w-full h-32 p-4 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none mb-4"
               placeholder="Collez ici le texte d'une annonce immobilière..."
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
             <a href="/analyse">
-              <button className="w-full sm:w-auto px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium cursor-pointer">
+              <button
+                className="w-full sm:w-auto px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium cursor-pointer"
+                onClick={handleAnalyse}
+              >
                 Analyser cette annonce
               </button>
             </a>
