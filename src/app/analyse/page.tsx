@@ -63,6 +63,7 @@ export default function AnalysePage({
       setDescription(desc);
       setEmailSubmitted(true);
       sessionStorage.removeItem("analyseDescription");
+      handleAnalyse();
     }
   }, []);
 

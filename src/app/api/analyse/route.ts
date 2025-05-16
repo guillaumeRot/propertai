@@ -163,7 +163,7 @@ Voici la **description** du bien à analyser :
 - Dans le champ "loyer.explication", indique précisément le détail du calcul".
 `;
 
-  console.log("Prompt :", promptAnalyse);
+  // console.log("Prompt :", promptAnalyse);
 
   const completion = await openai.chat.completions.create({
     model: "gpt-3.5-turbo-1106",
@@ -172,7 +172,7 @@ Voici la **description** du bien à analyser :
   });
 
   const raw = completion.choices[0].message.content;
-  console.log("🧠 Analyse enrichie :", raw);
+  // console.log("🧠 Analyse enrichie :", raw);
 
   const result = JSON.parse(raw!);
 
