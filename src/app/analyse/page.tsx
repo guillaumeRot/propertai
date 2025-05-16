@@ -19,9 +19,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
-export default function AnalysePage({
-  initialDescription,
-}: { initialDescription?: string } = {}) {
+export default function AnalysePage() {
   interface AnalyseResult {
     rentabilite: string;
     loyer: {
@@ -53,7 +51,7 @@ export default function AnalysePage({
     };
   }
 
-  const [description, setDescription] = useState(initialDescription || "");
+  const [description, setDescription] = useState("");
   const [result, setResult] = useState<AnalyseResult | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -208,7 +206,7 @@ export default function AnalysePage({
   };
 
   const [showModal, setShowModal] = useState(false);
-  const [emailSubmitted, setEmailSubmitted] = useState(!!initialDescription);
+  const [emailSubmitted, setEmailSubmitted] = useState(false);
 
   const handleEmailSubmit = async ({
     email,
