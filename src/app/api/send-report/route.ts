@@ -8,6 +8,9 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const { email, result } = body;
 
+  console.log("Email:", email);
+  console.log("Result:", result);
+
   if (!email || !result) {
     return NextResponse.json(
       { error: "Email ou données manquantes" },
