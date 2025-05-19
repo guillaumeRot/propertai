@@ -584,7 +584,7 @@ export default function Home() {
                   Export PDF, sans engagement
                 </p>
                 <p className="text-3xl font-bold text-gray-900 mb-6">
-                  12 €<span className="text-base font-medium">/mois</span>
+                  9,99 €<span className="text-base font-medium">/mois</span>
                 </p>
                 <br />
                 <ul className="text-left text-gray-700 space-y-2 mb-8">
@@ -635,11 +635,9 @@ export default function Home() {
                   Meilleur tarif, engagement 12 mois
                 </p>
                 <p className="text-3xl font-bold text-gray-900 mb-2">
-                  96 €<span className="text-base font-medium">/an</span>
+                  99 €<span className="text-base font-medium">/an</span>
                 </p>
-                <p className="text-sm text-green-600 mb-6">
-                  Soit 9 €/mois — économisez 25 %
-                </p>
+                <p className="text-sm text-green-600 mb-6">Soit 8,25 €/mois</p>
                 <ul className="text-left text-gray-600 space-y-2 mb-8">
                   <li className="flex gap-4 h-full items-center">
                     <CircleCheck
@@ -667,7 +665,7 @@ export default function Home() {
                       className="w-8 h-8 text-green-500"
                       aria-hidden="true"
                     />{" "}
-                    Paiement 1x ou mensuel
+                    Paiement 1 fois par an
                   </li>
                 </ul>
               </div>
