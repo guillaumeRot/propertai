@@ -17,6 +17,7 @@ import {
   Wrench,
   XCircle,
 } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 export default function AnalysePage() {
@@ -54,6 +55,7 @@ export default function AnalysePage() {
   const [description, setDescription] = useState("");
   const [result, setResult] = useState<AnalyseResult | null>(null);
   const [loading, setLoading] = useState(false);
+  const { data: session } = useSession();
 
   useEffect(() => {
     const desc = sessionStorage.getItem("analyseDescription");
@@ -237,7 +239,7 @@ export default function AnalysePage() {
       <Header />
 
       <EmailModal
-        open={showModal && !emailSubmitted}
+        open={showModal && !emailSubmitted && !session}
         onClose={() => setShowModal(false)}
         onSubmit={handleEmailSubmit}
       />
