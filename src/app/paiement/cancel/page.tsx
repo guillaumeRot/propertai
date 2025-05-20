@@ -6,9 +6,9 @@ export default function PaiementCancel() {
   return (
     <>
       <Header />
-      <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50 p-8">
+      <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50 pt-30 pb-8">
         <h1 className="text-3xl font-bold text-red-600 mb-4">
-          Paiement annulé ❌
+          Paiement annulé
         </h1>
         <p className="text-gray-700 text-center max-w-md mb-6">
           Vous avez annulé le processus de paiement. Aucun montant n’a été
