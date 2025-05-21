@@ -52,10 +52,10 @@ export default function Header() {
             </>
           )}
           <Link
-            href="/analyse"
+            href="/beta"
             className="px-6 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium"
           >
-            Tester l&apos;outil
+            Devenir beta-testeur gratuitement
           </Link>
         </div>
       </div>
