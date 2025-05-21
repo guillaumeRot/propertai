@@ -3,15 +3,35 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function BetaLanding() {
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      await fetch("/api/beta/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Erreur d'inscription :", err);
+    }
+  };
+
   return (
     <div className="bg-white min-h-screen flex flex-col">
       <Header />
 
       <main className="flex-grow">
         {/* Hero */}
-        <section className="pt-30 pb-10 bg-gradient-to-br from-orange-50 to-white px-6 text-center">
+        <section className="pt-30 pb-15 bg-gradient-to-br from-orange-50 to-white px-6 text-center">
           <div className="max-w-4xl mx-auto">
             <p className="text-orange-600 font-semibold mb-4 uppercase">
               Accès anticipé
@@ -24,12 +44,32 @@ export default function BetaLanding() {
               Testez l’outil avant tout le monde, donnez votre avis, et
               contribuez à façonner l’assistant immobilier idéal.
             </p>
-            <Link
-              href="/analyse"
-              className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-full transition"
-            >
-              Tester gratuitement
-            </Link>
+
+            {!submitted ? (
+              <form
+                onSubmit={handleSubscribe}
+                className="flex flex-col sm:flex-row items-center justify-center gap-4"
+              >
+                <input
+                  type="email"
+                  required
+                  placeholder="Votre email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full sm:w-80 border border-gray-300 rounded px-4 py-3 shadow-sm"
+                />
+                <button
+                  type="submit"
+                  className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded shadow transition"
+                >
+                  Rejoindre la bêta
+                </button>
+              </form>
+            ) : (
+              <p className="text-green-600 font-medium text-lg">
+                ✅ Merci ! Vous recevrez bientôt votre accès.
+              </p>
+            )}
           </div>
         </section>
 
