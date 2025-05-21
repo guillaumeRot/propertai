@@ -1,11 +1,13 @@
+import { sendThankYouEmail } from "@/lib/email/sendThankYouEmail";
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
 export async function POST(req: Request) {
   try {
-    const { email } = await req.json();
+    const { email, password } = await req.json();
 
     if (!email || typeof email !== "string") {
       return NextResponse.json({ error: "Email invalide" }, { status: 400 });
@@ -15,9 +17,14 @@ export async function POST(req: Request) {
     const existing = await prisma.user.findUnique({ where: { email } });
 
     if (!existing) {
-      await prisma.user.create({
-        data: {
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      await prisma.user.upsert({
+        where: { email },
+        update: {},
+        create: {
           email,
+          hashedPassword,
         },
       });
     }
@@ -31,6 +38,8 @@ export async function POST(req: Request) {
         content: `📬 Nouvelle inscription à la bêta : **${email}**`,
       }),
     });
+
+    await sendThankYouEmail(email);
 
     return NextResponse.json({ success: true });
   } catch (err) {

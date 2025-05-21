@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
   // 3. Envoyer l’e-mail
   try {
     await resend.emails.send({
-      from: "PropertAI <onboarding@resend.dev>",
+      from: "PropertAI <no-reply@propertai.fr>",
       to: email,
       subject: "Votre rapport d'analyse PropertAI",
       html: `<p>Bonjour,<br/>Voici votre rapport PropertAI en pièce jointe.<br/><br/>Merci pour votre confiance !</p>`,

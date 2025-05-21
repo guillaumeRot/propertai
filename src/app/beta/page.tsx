@@ -7,6 +7,7 @@ import { useState } from "react";
 
 export default function BetaLanding() {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubscribe = async (e: React.FormEvent) => {
@@ -16,7 +17,7 @@ export default function BetaLanding() {
       await fetch("/api/beta/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, password }),
       });
 
       setSubmitted(true);
@@ -48,7 +49,7 @@ export default function BetaLanding() {
             {!submitted ? (
               <form
                 onSubmit={handleSubscribe}
-                className="flex flex-col sm:flex-row items-center justify-center gap-4"
+                className="flex flex-col sm:flex-row items-center justify-center gap-4 flex-wrap max-w-md mx-auto"
               >
                 <input
                   type="email"
@@ -56,18 +57,26 @@ export default function BetaLanding() {
                   placeholder="Votre email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full sm:w-80 border border-gray-300 rounded px-4 py-3 shadow-sm"
+                  className="w-full border border-gray-300 rounded px-4 py-3 shadow-sm"
+                />
+                <input
+                  type="password"
+                  required
+                  placeholder="Mot de passe"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full border border-gray-300 rounded px-4 py-3 shadow-sm"
                 />
                 <button
                   type="submit"
-                  className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded shadow transition"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded shadow transition"
                 >
                   Rejoindre la bêta
                 </button>
               </form>
             ) : (
               <p className="text-green-600 font-medium text-lg">
-                ✅ Merci ! Vous recevrez bientôt votre accès.
+                ✅ Merci ! Vous pouvez maintenant vous connecter à votre compte.
               </p>
             )}
           </div>
