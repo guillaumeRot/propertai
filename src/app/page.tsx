@@ -521,7 +521,7 @@ export default function Home() {
           </p>
         </div>
       </section>
-      <section id="pricing" className="bg-white py-24 px-6">
+      {/* <section id="pricing" className="bg-white py-24 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Choisissez le plan qui vous convient
@@ -678,7 +678,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="bg-gray-50 py-20 px-6 md:px-20" id="faq">
         <div className="max-w-4xl mx-auto text-center">
@@ -789,7 +789,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="overflow-hidden py-16 bg-gray-50">
+      {/* <section className="overflow-hidden py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl/12 font-semibold text-gray-900">
@@ -900,7 +900,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       <section className="relative bg-gradient-to-br from-blue-50 to-blue-100 py-20 px-6 sm:px-10 lg:px-20">
         <div className="absolute inset-0 bg-[url('https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png')] opacity-10 pointer-events-none"></div>
 
