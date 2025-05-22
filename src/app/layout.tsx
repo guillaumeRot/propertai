@@ -30,6 +30,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="fe1b8ae3-4767-460a-a0f4-846f4e9f98a8"></script>
       </head>
       <body className={inter.className}>
         <Providers>{children}</Providers>
