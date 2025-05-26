@@ -24,17 +24,23 @@ export default function Footer() {
           </h3>
           <ul className="space-y-2">
             <li>
-              <a href="#" className="hover:underline hover:text-blue-400">
+              <a
+                href="/fonctionnalites"
+                className="hover:underline hover:text-blue-400"
+              >
                 Fonctionnalités
               </a>
             </li>
             <li>
-              <a href="#" className="hover:underline hover:text-blue-400">
+              <a href="/faq" className="hover:underline hover:text-blue-400">
                 FAQ
               </a>
             </li>
             <li>
-              <a href="#" className="hover:underline hover:text-blue-400">
+              <a
+                href="/analyse"
+                className="hover:underline hover:text-blue-400"
+              >
                 Analyse gratuite
               </a>
             </li>
