@@ -53,12 +53,18 @@ export default function Footer() {
           </h3>
           <ul className="space-y-2">
             <li>
-              <a href="#" className="hover:underline hover:text-blue-400">
+              <a
+                href="/comparatif"
+                className="hover:underline hover:text-blue-400"
+              >
                 Comparatif
               </a>
             </li>
             <li>
-              <a href="#" className="hover:underline hover:text-blue-400">
+              <a
+                href="/contact"
+                className="hover:underline hover:text-blue-400"
+              >
                 Contact
               </a>
             </li>
@@ -69,17 +75,23 @@ export default function Footer() {
           <h3 className="uppercase text-gray-400 tracking-wide mb-4">Légal</h3>
           <ul className="space-y-2">
             <li>
-              <a href="#" className="hover:underline hover:text-blue-400">
+              <a
+                href="/mentions-legales"
+                className="hover:underline hover:text-blue-400"
+              >
                 Mentions légales
               </a>
             </li>
             <li>
-              <a href="#" className="hover:underline hover:text-blue-400">
+              <a href="/cgu" className="hover:underline hover:text-blue-400">
                 CGU
               </a>
             </li>
             <li>
-              <a href="#" className="hover:underline hover:text-blue-400">
+              <a
+                href="/politique-confidentialite"
+                className="hover:underline hover:text-blue-400"
+              >
                 Politique de confidentialité
               </a>
             </li>
