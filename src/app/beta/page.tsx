@@ -86,17 +86,17 @@ export default function BetaLanding() {
         <section className="bg-white pt-4 pb-16 px-6">
           <div className="max-w-5xl mx-auto text-center">
             <h2 className="text-3xl font-semibold text-gray-900 mb-6">
-              Découvrez l'outil en 60 secondes
+              Découvrez l&apos;outil en 60 secondes
             </h2>
             <div className="aspect-video w-full rounded-xl overflow-hidden shadow-lg">
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/VIDEO_ID"
+                src="https://www.youtube.com/embed/65iJ0KxGDmY"
                 title="Présentation PropertAI"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-              ></iframe>
+              />
             </div>
           </div>
         </section>
