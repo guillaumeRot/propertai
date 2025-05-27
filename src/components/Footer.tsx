@@ -106,7 +106,7 @@ export default function Footer() {
           </p>
           <div className="flex space-x-4">
             <a
-              href="#"
+              href="https://www.linkedin.com/company/propert-ai/"
               className="hover:text-blue-400 transition-opacity opacity-80 hover:opacity-100"
             >
               <svg
