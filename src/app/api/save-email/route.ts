@@ -20,6 +20,17 @@ export async function POST(req: NextRequest) {
         firstName,
       },
     });
+
+    // Envoie un message sur Discord via ton webhook
+    const webhookUrl = process.env.DISCORD_LEAD_WEBHOOK!;
+    await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        content: `🎉 **Nouveau lead PropertAI**\n\n👤 Prénom : **${firstName}**\n📧 Email : **${email}**.`,
+      }),
+    });
+
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error(err);
