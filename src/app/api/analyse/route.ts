@@ -5,6 +5,60 @@ import { OpenAI } from "openai";
 const prisma = new PrismaClient();
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
+async function sendDiscordNotification({
+  description,
+  ville,
+  result,
+}: {
+  description: string;
+  ville: string;
+  result: any;
+}) {
+  const webhookUrl = process.env.DISCORD_ANALYSE_WEBHOOK;
+  if (!webhookUrl) return;
+
+  const content = `📊 Nouvelle analyse immobilière effectuée pour la commune de **${ville}**`;
+
+  const embed = {
+    title: "Analyse lancée",
+    color: 3447003, // bleu
+    fields: [
+      {
+        name: "Commune",
+        value: ville,
+        inline: true,
+      },
+      {
+        name: "Rentabilité estimée",
+        value: result.rentabilite,
+        inline: true,
+      },
+      {
+        name: "Loyer estimé",
+        value: result.loyer.estimation,
+        inline: true,
+      },
+    ],
+    footer: {
+      text: "PropertAI – Analyse automatisée",
+    },
+    timestamp: new Date().toISOString(),
+  };
+
+  try {
+    await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        content,
+        embeds: [embed],
+      }),
+    });
+  } catch (err) {
+    console.error("❌ Erreur Discord webhook :", err);
+  }
+}
+
 export async function POST(req: NextRequest) {
   const { description } = await req.json();
 
@@ -175,6 +229,12 @@ Voici la **description** du bien à analyser :
   // console.log("🧠 Analyse enrichie :", raw);
 
   const result = JSON.parse(raw!);
+
+  await sendDiscordNotification({
+    description,
+    ville: ville.nom_commune,
+    result,
+  });
 
   return NextResponse.json({ result });
 }
