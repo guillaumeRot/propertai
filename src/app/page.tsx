@@ -515,16 +515,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section
-        id="pricing"
-        className="bg-white py-16 px-4 sm:px-8 lg:px-16 text-center"
-      >
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl/12 font-semibold text-gray-900 mb-4">
+      <section id="pricing" className="bg-white py-24 px-6">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Commencez gratuitement. <br /> Passez à la vitesse supérieure quand
             vous êtes prêt.
           </h2>
-          <p className="text-gray-600 mb-12">
+          <p className="text-gray-600 text-lg mb-12">
             Créez un compte gratuit et profitez de 10 analyses avec export PDF.
             <br />
             Ensuite, débloquez un accès illimité avec nos offres premium.
@@ -541,6 +538,7 @@ export default function Home() {
                   10 analyses offertes avec export PDF
                 </p>
                 <p className="text-3xl font-bold text-gray-900 mb-6">0 €</p>
+                <br />
                 <ul className="text-left text-gray-600 space-y-2 mb-8">
                   <li className="flex gap-4 items-center">
                     <CircleCheck className="w-6 h-6 text-green-500" />
@@ -574,11 +572,12 @@ export default function Home() {
                   </span>
                 </h3>
                 <p className="text-gray-500 mb-4">
-                  Accès complet, sans limite et sans engagement
+                  Accès complet et sans engagement
                 </p>
                 <p className="text-3xl font-bold text-gray-900 mb-6">
                   9,99 €<span className="text-base font-medium"> / mois</span>
                 </p>
+                <br />
                 <ul className="text-left text-gray-700 space-y-2 mb-8">
                   <li className="flex gap-4 items-center">
                     <CircleCheck className="w-6 h-6 text-green-500" />
