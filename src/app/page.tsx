@@ -76,24 +76,17 @@ export default function Home() {
           </h1>
           <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
             Analysez instantanément n'importe quelle annonce immobilière et
-            découvrez ses leviers de rentabilité cachés grâce à l'IA.
+            découvrez ses leviers de rentabilité cachés grâce à l'IA. <br />
+            Créez votre compte gratuitement et profitez de 10 analyses offertes.
           </p>
+
           <div className="max-w-2xl mx-auto">
-            <textarea
-              className="w-full h-32 p-4 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none mb-4"
-              placeholder="Collez ici le texte d'une annonce immobilière..."
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-            {/* <a href="/analyse"> */}
-            <button
-              className="w-full sm:w-auto px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium cursor-pointer"
-              // onClick={handleAnalyse}
-              onClick={() => setShowModal(true)}
+            <a
+              href="/inscription"
+              className="inline-block px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium text-lg"
             >
-              Analyser cette annonce
-            </button>
-            {/* </a> */}
+              Créer mon compte (10 analyses offertes)
+            </a>
           </div>
         </div>
       </section>
@@ -521,57 +514,57 @@ export default function Home() {
           </p>
         </div>
       </section>
-      {/* <section id="pricing" className="bg-white py-24 px-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Choisissez le plan qui vous convient
+
+      <section
+        id="pricing"
+        className="bg-white py-16 px-4 sm:px-8 lg:px-16 text-center"
+      >
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl/12 font-semibold text-gray-900 mb-4">
+            Commencez gratuitement. <br /> Passez à la vitesse supérieure quand
+            vous êtes prêt.
           </h2>
-          <p className="text-gray-600 text-lg mb-12">
-            Commencez gratuitement, puis débloquez tout le potentiel de
-            PropertAI avec les formules premium.
+          <p className="text-gray-600 mb-12">
+            Créez un compte gratuit et profitez de 10 analyses avec export PDF.
+            <br />
+            Ensuite, débloquez un accès illimité avec nos offres premium.
           </p>
 
           <div className="grid gap-8 grid-cols-1 md:grid-cols-3">
+            {/* Plan Gratuit */}
             <div className="border rounded-xl p-6 shadow-sm flex flex-col justify-between">
               <div>
                 <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                  Gratuit
+                  Essai gratuit
                 </h3>
-                <p className="text-gray-500 mb-4">3 analyses sans export PDF</p>
+                <p className="text-gray-500 mb-4">
+                  10 analyses offertes avec export PDF
+                </p>
                 <p className="text-3xl font-bold text-gray-900 mb-6">0 €</p>
-                <br />
                 <ul className="text-left text-gray-600 space-y-2 mb-8">
-                  <li className="flex gap-4 h-full items-center">
-                    <CircleCheck
-                      className="w-8 h-8 text-green-500"
-                      aria-hidden="true"
-                    />{" "}
-                    3 analyses
+                  <li className="flex gap-4 items-center">
+                    <CircleCheck className="w-6 h-6 text-green-500" />
+                    10 analyses offertes
                   </li>
-                  <li className="flex gap-4 h-full items-center">
-                    <CircleCheck
-                      className="w-8 h-8 text-green-500"
-                      aria-hidden="true"
-                    />{" "}
+                  <li className="flex gap-4 items-center">
+                    <CircleCheck className="w-6 h-6 text-green-500" />
                     Recommandations IA
                   </li>
-                  <li className="flex gap-4 h-full items-center">
-                    <CircleX
-                      className="w-8 h-8 text-red-500"
-                      aria-hidden="true"
-                    />{" "}
-                    Pas d'export PDF
+                  <li className="flex gap-4 items-center">
+                    <CircleCheck className="w-6 h-6 text-green-500" />
+                    Export PDF inclus
                   </li>
                 </ul>
               </div>
               <a
-                href="/analyse"
+                href="/inscription"
                 className="mt-auto inline-block bg-orange-500 hover:bg-orange-600 text-white text-center font-semibold py-3 px-6 rounded-md transition"
               >
-                Tester gratuitement
+                Créer un compte gratuit
               </a>
             </div>
 
+            {/* Sans Engagement */}
             <div className="border-2 border-orange-500 rounded-xl p-6 shadow-md bg-orange-50 flex flex-col justify-between">
               <div>
                 <h3 className="text-xl font-semibold text-gray-800 mb-2 flex items-center justify-center gap-2">
@@ -581,39 +574,26 @@ export default function Home() {
                   </span>
                 </h3>
                 <p className="text-gray-500 mb-4">
-                  Export PDF, sans engagement
+                  Accès complet, sans limite et sans engagement
                 </p>
                 <p className="text-3xl font-bold text-gray-900 mb-6">
-                  9,99 €<span className="text-base font-medium">/mois</span>
+                  9,99 €<span className="text-base font-medium"> / mois</span>
                 </p>
-                <br />
                 <ul className="text-left text-gray-700 space-y-2 mb-8">
-                  <li className="flex gap-4 h-full items-center">
-                    <CircleCheck
-                      className="w-8 h-8 text-green-500"
-                      aria-hidden="true"
-                    />{" "}
-                    200 Analyses / mois
+                  <li className="flex gap-4 items-center">
+                    <CircleCheck className="w-6 h-6 text-green-500" />
+                    200 analyses / mois
                   </li>
-                  <li className="flex gap-4 h-full items-center">
-                    <CircleCheck
-                      className="w-8 h-8 text-green-500"
-                      aria-hidden="true"
-                    />{" "}
-                    Export PDF
+                  <li className="flex gap-4 items-center">
+                    <CircleCheck className="w-6 h-6 text-green-500" />
+                    Export PDF pro
                   </li>
-                  <li className="flex gap-4 h-full items-center">
-                    <CircleCheck
-                      className="w-8 h-8 text-green-500"
-                      aria-hidden="true"
-                    />{" "}
+                  <li className="flex gap-4 items-center">
+                    <CircleCheck className="w-6 h-6 text-green-500" />
                     Historique des analyses
                   </li>
-                  <li className="flex gap-4 h-full items-center">
-                    <CircleCheck
-                      className="w-8 h-8 text-green-500"
-                      aria-hidden="true"
-                    />{" "}
+                  <li className="flex gap-4 items-center">
+                    <CircleCheck className="w-6 h-6 text-green-500" />
                     Résiliable à tout moment
                   </li>
                 </ul>
@@ -626,6 +606,7 @@ export default function Home() {
               </a>
             </div>
 
+            {/* Annuel */}
             <div className="border rounded-xl p-6 shadow-sm flex flex-col justify-between">
               <div>
                 <h3 className="text-xl font-semibold text-gray-800 mb-2">
@@ -635,37 +616,27 @@ export default function Home() {
                   Meilleur tarif, engagement 12 mois
                 </p>
                 <p className="text-3xl font-bold text-gray-900 mb-2">
-                  99 €<span className="text-base font-medium">/an</span>
+                  99 €<span className="text-base font-medium"> / an</span>
                 </p>
-                <p className="text-sm text-green-600 mb-6">Soit 8,25 €/mois</p>
+                <p className="text-sm text-green-600 mb-6">
+                  Soit 8,25 € / mois
+                </p>
                 <ul className="text-left text-gray-600 space-y-2 mb-8">
-                  <li className="flex gap-4 h-full items-center">
-                    <CircleCheck
-                      className="w-8 h-8 text-green-500"
-                      aria-hidden="true"
-                    />{" "}
-                    200 Analyses / mois
+                  <li className="flex gap-4 items-center">
+                    <CircleCheck className="w-6 h-6 text-green-500" />
+                    200 analyses / mois
                   </li>
-                  <li className="flex gap-4 h-full items-center">
-                    <CircleCheck
-                      className="w-8 h-8 text-green-500"
-                      aria-hidden="true"
-                    />{" "}
-                    Export PDF
+                  <li className="flex gap-4 items-center">
+                    <CircleCheck className="w-6 h-6 text-green-500" />
+                    Export PDF pro
                   </li>
-                  <li className="flex gap-4 h-full items-center">
-                    <CircleCheck
-                      className="w-8 h-8 text-green-500"
-                      aria-hidden="true"
-                    />{" "}
+                  <li className="flex gap-4 items-center">
+                    <CircleCheck className="w-6 h-6 text-green-500" />
                     Historique des analyses
                   </li>
-                  <li className="flex gap-4 h-full items-center">
-                    <CircleCheck
-                      className="w-8 h-8 text-green-500"
-                      aria-hidden="true"
-                    />{" "}
-                    Paiement 1 fois par an
+                  <li className="flex gap-4 items-center">
+                    <CircleCheck className="w-6 h-6 text-green-500" />
+                    Paiement unique annuel
                   </li>
                 </ul>
               </div>
@@ -678,7 +649,23 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
+
+      <section className="py-20 bg-white px-6 text-center">
+        <h2 className="text-3xl sm:text-4xl/12 font-semibold text-gray-900 mb-6">
+          Commencez en 30 secondes.
+        </h2>
+        <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+          Créez votre compte et profitez de 10 analyses gratuites pour tester
+          l’outil sans engagement.
+        </p>
+        <a
+          href="/inscription"
+          className="inline-block px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium text-lg"
+        >
+          Je teste gratuitement PropertAI
+        </a>
+      </section>
 
       <section className="bg-gray-50 py-20 px-6 md:px-20" id="faq">
         <div className="max-w-4xl mx-auto text-center">
@@ -931,29 +918,17 @@ export default function Home() {
           <p className="text-gray-600 mb-8 text-base sm:text-lg">
             <span className="text-orange-500">PropertAI</span> transforme
             n'importe quelle annonce en rapport clair et actionnable.
-            <br className="hidden sm:block" /> Gratuit, instantané, sans
-            inscription.
+            <br className="hidden sm:block" /> Gratuit, instantané, sans carte
+            bancaire.
+            <br className="hidden sm:block" /> 10 analyses offertes dès
+            l’inscription.
           </p>
 
           <a
-            href="#analyse"
+            href="/inscription"
             className="inline-flex items-center px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold rounded-xl shadow-lg transition-colors duration-200"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-5 h-5 mr-2"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M13 10V3L4 14h7v7l9-11h-7z"
-              />
-            </svg>
-            Analyser une description maintenant
+            Créer mon compte gratuitement
           </a>
         </div>
       </section>
