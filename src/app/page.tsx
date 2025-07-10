@@ -82,7 +82,7 @@ export default function Home() {
 
           <div className="max-w-2xl mx-auto">
             <a
-              href="/inscription"
+              href="/auth/register"
               className="inline-block px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium text-lg"
             >
               Créer mon compte (10 analyses offertes)
@@ -555,7 +555,7 @@ export default function Home() {
                 </ul>
               </div>
               <a
-                href="/inscription"
+                href="/auth/register"
                 className="mt-auto inline-block bg-orange-500 hover:bg-orange-600 text-white text-center font-semibold py-3 px-6 rounded-md transition"
               >
                 Créer un compte gratuit
@@ -659,7 +659,7 @@ export default function Home() {
           l’outil sans engagement.
         </p>
         <a
-          href="/inscription"
+          href="/auth/register"
           className="inline-block px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-200 font-medium text-lg"
         >
           Je teste gratuitement PropertAI
@@ -924,7 +924,7 @@ export default function Home() {
           </p>
 
           <a
-            href="/inscription"
+            href="/auth/register"
             className="inline-flex items-center px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold rounded-xl shadow-lg transition-colors duration-200"
           >
             Créer mon compte gratuitement

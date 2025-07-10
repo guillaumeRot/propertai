@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import { useState } from "react";
 
 export default function RegisterPage() {
-  const router = useRouter();
+  const [submitted, setSubmitted] = useState(false);
+  const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -29,52 +30,83 @@ export default function RegisterPage() {
     if (!res.ok) {
       setError(data.error || "Erreur inconnue");
       setLoading(false);
+      setSubmitted(true);
       return;
     }
-
-    router.push("/auth/login");
   };
 
   return (
-    <div className="max-w-md mx-auto mt-12 p-6 border rounded-md shadow">
-      <h2 className="text-2xl font-semibold mb-6">Créer un compte</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium">Email</label>
-          <input
-            type="email"
-            className="w-full mt-1 p-2 border rounded"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium">Mot de passe</label>
-          <input
-            type="password"
-            className="w-full mt-1 p-2 border rounded"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength={6}
-          />
-        </div>
-        {error && <p className="text-red-500 text-sm">{error}</p>}
-        <button
-          type="submit"
-          className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded"
-          disabled={loading}
-        >
-          {loading ? "Création du compte..." : "Créer un compte"}
-        </button>
-      </form>
-      <p className="text-sm mt-4 text-center">
-        Vous avez déjà un compte ?{" "}
-        <Link href="/auth/login" className="text-orange-600 font-medium">
-          Connectez-vous
-        </Link>
-      </p>
+    <div className="bg-white min-h-screen flex flex-col">
+      <Header />
+
+      <main className="flex-grow">
+        <section className="pt-28 pb-16 bg-gradient-to-br from-orange-50 to-white px-6 text-center">
+          <div className="max-w-xl mx-auto">
+            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+              10 analyses offertes{" "}
+              <span className="text-orange-500">avec export PDF</span>
+            </h1>
+            <p className="text-gray-700 text-lg mb-10">
+              Gratuit, sans carte bancaire. En moins de 30 secondes.
+            </p>
+
+            {!submitted ? (
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-4 max-w-md mx-auto text-left"
+              >
+                <input
+                  type="text"
+                  required
+                  placeholder="Prénom"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="w-full border border-gray-300 rounded px-4 py-3 shadow-sm"
+                />
+                <input
+                  type="email"
+                  required
+                  placeholder="Votre email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full border border-gray-300 rounded px-4 py-3 shadow-sm"
+                />
+                <input
+                  type="password"
+                  required
+                  placeholder="Mot de passe"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full border border-gray-300 rounded px-4 py-3 shadow-sm"
+                />
+                <button
+                  type="submit"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded"
+                  disabled={loading}
+                >
+                  {loading ? "Création du compte..." : "Créer un compte"}
+                </button>
+              </form>
+            ) : (
+              <div className="mt-6">
+                <p className="text-green-600 font-medium text-lg mb-6 text-center">
+                  Bienvenue ! Votre compte est créé.
+                  <br />
+                  Vous pouvez maintenant analyser vos annonces.
+                </p>
+                <a
+                  href="/analyse"
+                  className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded shadow transition"
+                >
+                  Lancer une analyse maintenant
+                </a>
+              </div>
+            )}
+          </div>
+        </section>
+      </main>
+
+      <Footer />
     </div>
   );
 }
