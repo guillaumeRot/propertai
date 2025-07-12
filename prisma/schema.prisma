@@ -99,3 +99,29 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+model Analyse {
+  id                     Int      @id @default(autoincrement())
+  userEmail              String
+  description            String
+  rentabilite            String?
+  loyerEstimation        String?
+  loyerExplication       String?
+  fiscaliteRegime        String?
+  fiscaliteExplication   String?
+  recommandations        String[] // @db.Text[] pour PostgreSQL
+  forces                 String[]
+  faiblesses             String[]
+  questions              String[]
+  strategie              String?
+  estimation             String?
+  prixAffiche            String?
+  prixM2Quartier         String?
+  commentaireEstimation  String?
+  positionnement         String?
+  estZoneTendue          Boolean?
+  commentaireZoneTendue  String?
+  infoReglementaire      String?
+  createdAt              DateTime @default(now())
+}
+
+

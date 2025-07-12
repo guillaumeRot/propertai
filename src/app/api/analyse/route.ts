@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client"; // adapte ce chemin si besoin
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import { OpenAI } from "openai";
 
@@ -6,18 +7,18 @@ const prisma = new PrismaClient();
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 async function sendDiscordNotification({
-  description,
+  userEmail,
   ville,
   result,
 }: {
-  description: string;
+  userEmail: string;
   ville: string;
   result: any;
 }) {
   const webhookUrl = process.env.DISCORD_ANALYSE_WEBHOOK;
   if (!webhookUrl) return;
 
-  const content = `📊 Nouvelle analyse immobilière effectuée pour la commune de **${ville}**`;
+  const content = `📊 Nouvelle analyse immobilière effectuée pour la commune de **${ville}** par **${userEmail}**`;
 
   const embed = {
     title: "Analyse lancée",
@@ -60,6 +61,11 @@ async function sendDiscordNotification({
 }
 
 export async function POST(req: NextRequest) {
+  const session = await getServerSession();
+  if (!session?.user?.email) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+
   const { description } = await req.json();
 
   if (!description) {
@@ -230,8 +236,33 @@ Voici la **description** du bien à analyser :
 
   const result = JSON.parse(raw!);
 
+  await prisma.analyse.create({
+    data: {
+      userEmail: session.user.email,
+      description,
+      rentabilite: result.rentabilite,
+      loyerEstimation: result.loyer.estimation,
+      loyerExplication: result.loyer.explication,
+      fiscaliteRegime: result.fiscalite.regime,
+      fiscaliteExplication: result.fiscalite.explication,
+      recommandations: result.recommandations,
+      forces: result.forces,
+      faiblesses: result.faiblesses,
+      questions: result.questions,
+      strategie: result.strategie,
+      estimation: result.estimationBien.estimation,
+      prixAffiche: result.estimationBien.prixAffiche,
+      prixM2Quartier: result.estimationBien.prixM2Quartier,
+      commentaireEstimation: result.estimationBien.commentaire,
+      positionnement: result.estimationBien.positionnement,
+      estZoneTendue: result.tensionLocative.estZoneTendue,
+      commentaireZoneTendue: result.tensionLocative.commentaire,
+      infoReglementaire: result.tensionLocative.infoReglementaire,
+    },
+  });
+
   await sendDiscordNotification({
-    description,
+    userEmail: session.user.email,
     ville: ville.nom_commune,
     result,
   });
