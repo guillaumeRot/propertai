@@ -77,6 +77,13 @@ export default function Header() {
                       className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100"
                       onClick={() => setMenuOpen(false)}
                     >
+                      Nouvelle analyse
+                    </Link>
+                    <Link
+                      href="/mes-analyses"
+                      className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100"
+                      onClick={() => setMenuOpen(false)}
+                    >
                       Mes analyses
                     </Link>
                     <button
