@@ -1,6 +1,5 @@
 "use client";
 
-import EmailModal from "@/components/EmailModal";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { jsPDF } from "jspdf";
@@ -63,7 +62,6 @@ export default function AnalysePage() {
     const desc = sessionStorage.getItem("analyseDescription");
     if (desc) {
       setDescription(desc);
-      setEmailSubmitted(true);
       sessionStorage.removeItem("analyseDescription");
       handleAnalyse();
     }
@@ -78,7 +76,6 @@ export default function AnalysePage() {
   const handleAnalyse = async () => {
     setLoading(true);
     setResult(null);
-    setShowModal(true);
 
     try {
       const res = await fetch("/api/analyse", {
@@ -215,43 +212,9 @@ export default function AnalysePage() {
     doc.save("rapport_propertai.pdf");
   };
 
-  const [showModal, setShowModal] = useState(false);
-  const [emailSubmitted, setEmailSubmitted] = useState(false);
-
-  const handleEmailSubmit = async ({
-    email,
-    firstName,
-  }: {
-    email: string;
-    firstName: string;
-  }) => {
-    try {
-      await fetch("/api/save-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, firstName }),
-      });
-      setEmailSubmitted(true);
-      await fetch("/api/send-report", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, result }),
-      });
-    } catch (err) {
-      console.error("Erreur lors de l’envoi de l’email :", err);
-    }
-  };
-
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col">
       <Header />
-
-      <EmailModal
-        open={showModal && !emailSubmitted && !session}
-        onClose={() => setShowModal(false)}
-        onSubmit={handleEmailSubmit}
-      />
-
       <main className="flex-grow max-w-4xl mx-auto px-4 py-24 w-full">
         <h1 className="text-3xl font-bold text-center mb-8 text-gray-900">
           Analysez votre bien en un instant

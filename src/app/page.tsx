@@ -1,6 +1,5 @@
 "use client";
 
-import EmailModal from "@/components/EmailModal";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { CircleCheck, CircleCheckBig, CircleX } from "lucide-react"; // Ajoutez les icônes nécessaires
@@ -11,37 +10,9 @@ import { useState } from "react";
 export default function Home() {
   const [description, setDescription] = useState("");
   const router = useRouter();
-  const [showModal, setShowModal] = useState(false);
-
-  const handleEmailSubmit = async ({
-    email,
-    firstName,
-  }: {
-    email: string;
-    firstName: string;
-  }) => {
-    try {
-      await fetch("/api/save-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, firstName }),
-      });
-    } catch (err) {
-      console.error("Erreur lors de l’envoi de l’email :", err);
-    }
-    sessionStorage.setItem("analyseDescription", description);
-    setShowModal(false);
-    router.push("/analyse");
-  };
 
   return (
     <div className="min-h-screen bg-white">
-      <EmailModal
-        open={showModal}
-        onClose={() => setShowModal(false)}
-        onSubmit={handleEmailSubmit}
-      />
-
       <Header />
       {/* Hero Section */}
       <section className="relative pt-30 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
