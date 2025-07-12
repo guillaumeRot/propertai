@@ -22,7 +22,7 @@ export default function RegisterPage() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email, password, firstName }),
     });
 
     const data = await res.json();
@@ -30,9 +30,9 @@ export default function RegisterPage() {
     if (!res.ok) {
       setError(data.error || "Erreur inconnue");
       setLoading(false);
-      setSubmitted(true);
       return;
     }
+    setSubmitted(true);
   };
 
   return (
@@ -50,43 +50,62 @@ export default function RegisterPage() {
               Gratuit, sans carte bancaire. En moins de 30 secondes.
             </p>
 
+            {error ? (
+              <p className="text-red-600 font-medium text-lg mb-6 text-center">
+                {error}
+              </p>
+            ) : (
+              <></>
+            )}
+
             {!submitted ? (
-              <form
-                onSubmit={handleSubmit}
-                className="flex flex-col gap-4 max-w-md mx-auto text-left"
-              >
-                <input
-                  type="text"
-                  required
-                  placeholder="Prénom"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  className="w-full border border-gray-300 rounded px-4 py-3 shadow-sm"
-                />
-                <input
-                  type="email"
-                  required
-                  placeholder="Votre email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full border border-gray-300 rounded px-4 py-3 shadow-sm"
-                />
-                <input
-                  type="password"
-                  required
-                  placeholder="Mot de passe"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full border border-gray-300 rounded px-4 py-3 shadow-sm"
-                />
-                <button
-                  type="submit"
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded"
-                  disabled={loading}
+              <>
+                <form
+                  onSubmit={handleSubmit}
+                  className="flex flex-col gap-4 max-w-md mx-auto text-left"
                 >
-                  {loading ? "Création du compte..." : "Créer un compte"}
-                </button>
-              </form>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Prénom"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="w-full border border-gray-300 rounded px-4 py-3 shadow-sm"
+                  />
+                  <input
+                    type="email"
+                    required
+                    placeholder="Votre email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full border border-gray-300 rounded px-4 py-3 shadow-sm"
+                  />
+                  <input
+                    type="password"
+                    required
+                    placeholder="Mot de passe"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full border border-gray-300 rounded px-4 py-3 shadow-sm"
+                  />
+                  <button
+                    type="submit"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded"
+                    disabled={loading}
+                  >
+                    {loading ? "Création du compte..." : "Créer un compte"}
+                  </button>
+                </form>
+                <p className="text-sm text-gray-600 text-center mt-4">
+                  Vous avez déjà un compte ?{" "}
+                  <a
+                    href="/auth/login"
+                    className="text-orange-500 hover:underline font-medium"
+                  >
+                    Connectez-vous ici
+                  </a>
+                </p>
+              </>
             ) : (
               <div className="mt-6">
                 <p className="text-green-600 font-medium text-lg mb-6 text-center">
