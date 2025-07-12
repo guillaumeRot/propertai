@@ -18,6 +18,7 @@ import {
   XCircle,
 } from "lucide-react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function AnalysePage() {
@@ -56,6 +57,7 @@ export default function AnalysePage() {
   const [result, setResult] = useState<AnalyseResult | null>(null);
   const [loading, setLoading] = useState(false);
   const { data: session } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     const desc = sessionStorage.getItem("analyseDescription");
@@ -66,6 +68,12 @@ export default function AnalysePage() {
       handleAnalyse();
     }
   }, []);
+
+  useEffect(() => {
+    if (session === null) {
+      router.push("/");
+    }
+  }, [session]);
 
   const handleAnalyse = async () => {
     setLoading(true);
