@@ -2,6 +2,7 @@
 
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { useSubscription } from "@/hooks/use-subscriptions";
 import { jsPDF } from "jspdf";
 import {
   BarChart3,
@@ -57,15 +58,7 @@ export default function AnalysePage() {
   const [loading, setLoading] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
-
-  useEffect(() => {
-    const desc = sessionStorage.getItem("analyseDescription");
-    if (desc) {
-      setDescription(desc);
-      sessionStorage.removeItem("analyseDescription");
-      handleAnalyse();
-    }
-  }, []);
+  const { subscription, loading: loadingSubscription } = useSubscription();
 
   useEffect(() => {
     if (session === null) {
@@ -219,6 +212,14 @@ export default function AnalysePage() {
         <h1 className="text-3xl font-bold text-center mb-8 text-gray-900">
           Analysez votre bien en un instant
         </h1>
+
+        {!loadingSubscription && subscription?.plan === "FREE" && (
+          <div className="mb-6 p-4 bg-orange-100 border border-orange-300 text-orange-800 rounded-md text-sm text-center">
+            🔎 Il vous reste <strong>{subscription.remaining}</strong> analyse
+            {subscription.remaining !== 1 ? "s" : ""} gratuite
+            {subscription.remaining !== 1 ? "s" : ""}.
+          </div>
+        )}
 
         <textarea
           placeholder="Collez ici la description du bien immobilier..."

@@ -261,6 +261,11 @@ Voici la **description** du bien à analyser :
     },
   });
 
+  await prisma.subscription.update({
+    where: { userEmail: session.user.email },
+    data: { analysesUsed: { increment: 1 } },
+  });
+
   await sendDiscordNotification({
     userEmail: session.user.email,
     ville: ville.nom_commune,

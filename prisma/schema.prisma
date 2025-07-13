@@ -58,9 +58,35 @@ model User {
   image          String?
   hashedPassword String?
   createdAt DateTime @default(now())
+  stripeCustomerId String?
 
   accounts       Account[]
   sessions       Session[]
+}
+
+model Subscription {
+  id                  String   @id @default(uuid())
+  userEmail           String   @unique
+  stripeSubscriptionId String? // null pour le plan gratuit
+  plan                Plan
+  status              SubscriptionStatus
+  currentPeriodEnd    DateTime?
+  analysesUsed        Int      @default(0)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+enum Plan {
+  FREE
+  MONTHLY
+  YEARLY
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  TRIALING
+  INACTIVE
 }
 
 model Account {
