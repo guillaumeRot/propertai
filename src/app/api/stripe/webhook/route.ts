@@ -8,6 +8,12 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-04-30.basil",
 });
 
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
 async function notifyDiscordStripeEvent(
@@ -59,12 +65,16 @@ async function notifyDiscordStripeEvent(
 
 export async function POST(req: NextRequest) {
   const signature = req.headers.get("stripe-signature")!;
-  const rawBody = await req.text();
+  const rawBody = await req.arrayBuffer();
 
-  let event: Stripe.Event;
+  let event;
 
   try {
-    event = stripe.webhooks.constructEvent(rawBody, signature, endpointSecret);
+    event = stripe.webhooks.constructEvent(
+      Buffer.from(rawBody),
+      signature!,
+      endpointSecret
+    );
   } catch (err) {
     console.error("❌ Erreur webhook Stripe :", err);
     return new Response("Invalid signature", { status: 400 });
