@@ -49,23 +49,44 @@ model VilleIndicateur {
   type_zone                  String?
 }
 
-model Lead {
-  id        String   @id @default(cuid())
-  email     String
-  firstName String
-  createdAt DateTime @default(now())
-}
-
 model User {
   id             String    @id @default(cuid())
   name           String?
   email          String?   @unique
+  firstName      String?
   emailVerified  DateTime?
   image          String?
   hashedPassword String?
+  createdAt DateTime @default(now())
+  stripeCustomerId String?
 
   accounts       Account[]
   sessions       Session[]
+}
+
+model Subscription {
+  id                  String   @id @default(uuid())
+  userEmail           String   @unique
+  stripeSubscriptionId String? // null pour le plan gratuit
+  plan                Plan
+  status              SubscriptionStatus
+  currentPeriodEnd    DateTime?
+  analysesUsed        Int      @default(0)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+enum Plan {
+  FREE
+  MONTHLY
+  YEARLY
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  TRIALING
+  INACTIVE
 }
 
 model Account {
@@ -80,7 +101,7 @@ model Account {
   token_type         String? 
   scope              String? 
   id_token           String? 
-  session_state      String? 
+  session_state      String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -103,4 +124,30 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model Analyse {
+  id                     Int      @id @default(autoincrement())
+  userEmail              String
+  description            String
+  rentabilite            String?
+  loyerEstimation        String?
+  loyerExplication       String?
+  fiscaliteRegime        String?
+  fiscaliteExplication   String?
+  recommandations        String[] // @db.Text[] pour PostgreSQL
+  forces                 String[]
+  faiblesses             String[]
+  questions              String[]
+  strategie              String?
+  estimation             String?
+  prixAffiche            String?
+  prixM2Quartier         String?
+  commentaireEstimation  String?
+  positionnement         String?
+  estZoneTendue          Boolean?
+  commentaireZoneTendue  String?
+  infoReglementaire      String?
+  createdAt              DateTime @default(now())
+}
+
 

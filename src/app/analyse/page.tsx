@@ -1,8 +1,8 @@
 "use client";
 
-import EmailModal from "@/components/EmailModal";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { useSubscription } from "@/hooks/use-subscriptions";
 import { jsPDF } from "jspdf";
 import {
   BarChart3,
@@ -18,6 +18,7 @@ import {
   XCircle,
 } from "lucide-react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function AnalysePage() {
@@ -56,21 +57,18 @@ export default function AnalysePage() {
   const [result, setResult] = useState<AnalyseResult | null>(null);
   const [loading, setLoading] = useState(false);
   const { data: session } = useSession();
+  const router = useRouter();
+  const { subscription, loading: loadingSubscription } = useSubscription();
 
   useEffect(() => {
-    const desc = sessionStorage.getItem("analyseDescription");
-    if (desc) {
-      setDescription(desc);
-      setEmailSubmitted(true);
-      sessionStorage.removeItem("analyseDescription");
-      handleAnalyse();
+    if (session === null) {
+      router.push("/");
     }
-  }, []);
+  }, [session]);
 
   const handleAnalyse = async () => {
     setLoading(true);
     setResult(null);
-    setShowModal(true);
 
     try {
       const res = await fetch("/api/analyse", {
@@ -207,47 +205,21 @@ export default function AnalysePage() {
     doc.save("rapport_propertai.pdf");
   };
 
-  const [showModal, setShowModal] = useState(false);
-  const [emailSubmitted, setEmailSubmitted] = useState(false);
-
-  const handleEmailSubmit = async ({
-    email,
-    firstName,
-  }: {
-    email: string;
-    firstName: string;
-  }) => {
-    try {
-      await fetch("/api/save-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, firstName }),
-      });
-      setEmailSubmitted(true);
-      await fetch("/api/send-report", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, result }),
-      });
-    } catch (err) {
-      console.error("Erreur lors de l’envoi de l’email :", err);
-    }
-  };
-
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col">
       <Header />
-
-      <EmailModal
-        open={showModal && !emailSubmitted && !session}
-        onClose={() => setShowModal(false)}
-        onSubmit={handleEmailSubmit}
-      />
-
       <main className="flex-grow max-w-4xl mx-auto px-4 py-24 w-full">
         <h1 className="text-3xl font-bold text-center mb-8 text-gray-900">
           Analysez votre bien en un instant
         </h1>
+
+        {!loadingSubscription && subscription?.plan === "FREE" && (
+          <div className="mb-6 p-4 bg-orange-100 border border-orange-300 text-orange-800 rounded-md text-sm text-center">
+            🔎 Il vous reste <strong>{subscription.remaining}</strong> analyse
+            {subscription.remaining !== 1 ? "s" : ""} gratuite
+            {subscription.remaining !== 1 ? "s" : ""}.
+          </div>
+        )}
 
         <textarea
           placeholder="Collez ici la description du bien immobilier..."
@@ -257,19 +229,35 @@ export default function AnalysePage() {
           className="w-full border border-gray-300 rounded-md p-4 mb-4 shadow-sm"
         />
 
-        <button
-          onClick={handleAnalyse}
-          disabled={!description || loading}
-          className="w-full text-lg font-semibold bg-orange-500 hover:bg-orange-600 text-white rounded-md py-3 transition duration-200"
-        >
-          {loading ? (
-            <span className="flex items-center justify-center gap-2">
-              <Loader2 className="animate-spin h-5 w-5" /> Analyse en cours...
-            </span>
-          ) : (
-            "Lancer l'analyse"
-          )}
-        </button>
+        {!loadingSubscription &&
+        subscription?.plan === "FREE" &&
+        subscription.remaining === 0 ? (
+          <div className="w-full flex flex-col items-center bg-red-50 border border-red-200 text-red-700 rounded-md p-4 mb-6">
+            <p className="text-sm font-medium mb-2">
+              Vous avez atteint la limite de 10 analyses gratuites.
+            </p>
+            <a
+              href="/upgrade-abo"
+              className="text-sm text-white bg-orange-500 hover:bg-orange-600 font-semibold px-4 py-2 rounded-md transition duration-200"
+            >
+              🔓 Passer à l’abonnement
+            </a>
+          </div>
+        ) : (
+          <button
+            onClick={handleAnalyse}
+            disabled={!description || loading}
+            className="w-full text-lg font-semibold bg-orange-500 hover:bg-orange-600 text-white rounded-md py-3 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {loading ? (
+              <span className="flex items-center justify-center gap-2">
+                <Loader2 className="animate-spin h-5 w-5" /> Analyse en cours...
+              </span>
+            ) : (
+              "Lancer l'analyse"
+            )}
+          </button>
+        )}
 
         {result && (
           <div className="mt-10 bg-white rounded-xl shadow p-6 space-y-8">
