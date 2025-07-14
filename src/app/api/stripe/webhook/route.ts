@@ -65,19 +65,20 @@ async function notifyDiscordStripeEvent(
 
 export async function POST(req: NextRequest) {
   const signature = req.headers.get("stripe-signature")!;
-  const rawBody = await req.arrayBuffer();
+  if (!signature) {
+    return new Response("Missing signature", { status: 400 });
+  }
 
   let event;
 
   try {
-    event = stripe.webhooks.constructEvent(
-      Buffer.from(rawBody),
-      signature!,
-      endpointSecret
-    );
+    const textBody = await req.text();
+    event = stripe.webhooks.constructEvent(textBody, signature, endpointSecret);
   } catch (err) {
     console.error("❌ Erreur webhook Stripe :", err);
-    return new Response("Invalid signature", { status: 400 });
+    return new Response("Webhook signature verification failed", {
+      status: 400,
+    });
   }
 
   // 🔄 Handle subscription events
