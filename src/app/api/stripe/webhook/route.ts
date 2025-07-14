@@ -9,6 +9,53 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
+async function notifyDiscordStripeEvent(
+  email: string,
+  type: string,
+  plan?: string
+) {
+  const payload = {
+    content: `📬 **Stripe : événement reçu**`,
+    embeds: [
+      {
+        title: `💡 ${type.replace("customer.subscription.", "").toUpperCase()}`,
+        color:
+          type === "customer.subscription.deleted"
+            ? 0xff0000
+            : type === "customer.subscription.created"
+              ? 0x00cc66
+              : 0xff9900,
+        fields: [
+          {
+            name: "Utilisateur",
+            value: email,
+            inline: true,
+          },
+          {
+            name: "Plan",
+            value: plan ?? "Inconnu",
+            inline: true,
+          },
+        ],
+        timestamp: new Date().toISOString(),
+        footer: {
+          text: "Webhook Stripe – PropertAI",
+        },
+      },
+    ],
+  };
+
+  try {
+    await fetch(process.env.DISCORD_STRIPE_WEBHOOK!, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+  } catch (err) {
+    console.error("❌ Erreur envoi webhook Discord :", err);
+  }
+}
+
 export async function POST(req: NextRequest) {
   const signature = req.headers.get("stripe-signature")!;
   const rawBody = await req.text();
@@ -65,6 +112,8 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    await notifyDiscordStripeEvent(email, event.type, plan);
+
     console.log(`✅ Abonnement ${plan} mis à jour pour ${email}`);
   }
 
@@ -84,6 +133,8 @@ export async function POST(req: NextRequest) {
           status: "CANCELED",
         },
       });
+
+      await notifyDiscordStripeEvent(email, event.type, "–");
 
       console.log(`🚫 Abonnement annulé pour ${email}`);
     }
