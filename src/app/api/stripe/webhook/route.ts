@@ -104,7 +104,7 @@ export async function POST(req: NextRequest) {
       subscription.items.data[0].current_period_end * 1000
     );
     const plan =
-      priceId === process.env.STRIPE_PRICE_ANNUEL_ID ? "YEARLY" : "MONTHLY";
+      priceId === process.env.STRIPE_PRICE_ID_ANNUAL ? "YEARLY" : "MONTHLY";
 
     await prisma.subscription.upsert({
       where: { userEmail: email },
