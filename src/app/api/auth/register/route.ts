@@ -50,6 +50,15 @@ export async function POST(req: Request) {
       },
     });
 
+    await prisma.subscription.create({
+      data: {
+        userEmail: email,
+        plan: "FREE",
+        status: "ACTIVE",
+        analysesUsed: 0,
+      },
+    });
+
     // Envoie un message sur Discord via ton webhook
     const webhookUrl = process.env.DISCORD_NEW_USER_WEBHOOK!;
     await fetch(webhookUrl, {
