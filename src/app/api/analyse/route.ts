@@ -1,3 +1,4 @@
+import { sendFirstAnalyseEmail } from "@/lib/email/sendFirstAnalyseEmail";
 import { PrismaClient } from "@prisma/client"; // adapte ce chemin si besoin
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
@@ -235,6 +236,16 @@ Voici la **description** du bien à analyser :
   // console.log("🧠 Analyse enrichie :", raw);
 
   const result = JSON.parse(raw!);
+
+  const analyseExists = await prisma.analyse.findFirst({
+    where: {
+      userEmail: session.user.email,
+    },
+  });
+
+  if (!analyseExists) {
+    sendFirstAnalyseEmail(session.user.email);
+  }
 
   await prisma.analyse.create({
     data: {
