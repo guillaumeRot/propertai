@@ -1,3 +1,4 @@
+import { sendThankYouEmail } from "@/lib/email/sendThankYouEmail";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
@@ -58,6 +59,8 @@ export async function POST(req: Request) {
         analysesUsed: 0,
       },
     });
+
+    sendThankYouEmail(email);
 
     // Envoie un message sur Discord via ton webhook
     const webhookUrl = process.env.DISCORD_NEW_USER_WEBHOOK!;
