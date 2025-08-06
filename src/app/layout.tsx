@@ -1,4 +1,3 @@
-import { HotJar } from "@/components/Hotjar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -36,7 +35,6 @@ export default function RootLayout({
           src="https://cloud.umami.is/script.js"
           data-website-id="fe1b8ae3-4767-460a-a0f4-846f4e9f98a8"
         ></script>
-        <HotJar />
         <script>
           {`(function(h,o,t,j,a,r){
               h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
