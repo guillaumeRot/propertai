@@ -1,5 +1,7 @@
 "use client";
 
+import { PriceComparisonChart } from "@/components/charts/PriceComparisonChart";
+import { RentabiliteChart } from "@/components/charts/RentabiliteChart";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { useSubscription } from "@/hooks/use-subscriptions";
@@ -279,6 +281,7 @@ export default function AnalysePage() {
                     <p className="text-2xl font-bold text-gray-900">
                       {result.rentabilite}
                     </p>
+                    <RentabiliteChart rentabilite={result.rentabilite} />
                   </div>
 
                   <div className="bg-white rounded-lg shadow p-4">
@@ -400,6 +403,16 @@ export default function AnalysePage() {
                         {result.estimationBien.prixAffiche}
                       </p>
                     </div>
+
+                    <div className="sm:col-span-2">
+                      <PriceComparisonChart
+                        estimation={parseInt(result.estimationBien.estimation)}
+                        prixAffiche={parseInt(
+                          result.estimationBien.prixAffiche
+                        )}
+                      />
+                    </div>
+
                     <div>
                       <p className="text-sm text-gray-500">
                         Prix moyen au m² :
@@ -408,6 +421,7 @@ export default function AnalysePage() {
                         {result.estimationBien.prixM2Quartier}
                       </p>
                     </div>
+
                     <div className="sm:col-span-2">
                       <p className="text-sm text-gray-500">Analyse :</p>
                       <p className="text-gray-700">
