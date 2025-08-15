@@ -1,3 +1,4 @@
+import { sendThankYouEmail } from "@/lib/email/sendThankYouEmail";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
@@ -59,6 +60,18 @@ const authOptions: AuthOptions = {
           status: "ACTIVE", // valeur par défaut de ton enum SubscriptionStatus
           analysesUsed: 0,
         },
+      });
+
+      sendThankYouEmail(message.user.email);
+
+      // Envoie un message sur Discord via ton webhook
+      const webhookUrl = process.env.DISCORD_NEW_USER_WEBHOOK!;
+      await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: `🎉 Nouveau membre sur PropertAI !\n👤 **${message.user.name}** (${message.user.email}) vient de créer un compte.`,
+        }),
       });
     },
   },
