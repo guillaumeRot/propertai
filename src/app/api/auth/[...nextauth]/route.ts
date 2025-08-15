@@ -46,6 +46,22 @@ const authOptions: AuthOptions = {
     error: "/auth/login", // peut-être améliorer avec ?error=
   },
   secret: process.env.NEXTAUTH_SECRET,
+
+  // 📌 Création auto de la subscription à la 1ère connexion
+  events: {
+    async createUser(message) {
+      if (!message.user.email) return; // sécurité
+
+      await prisma.subscription.create({
+        data: {
+          userEmail: message.user.email,
+          plan: "FREE", // valeur par défaut de ton enum Plan
+          status: "ACTIVE", // valeur par défaut de ton enum SubscriptionStatus
+          analysesUsed: 0,
+        },
+      });
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);
