@@ -2,10 +2,10 @@
 
 import { PriceComparisonChart } from "@/components/charts/PriceComparisonChart";
 import { RentabiliteChart } from "@/components/charts/RentabiliteChart";
+import { handleExportPDF } from "@/components/ExportPDF";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { useSubscription } from "@/hooks/use-subscriptions";
-import { jsPDF } from "jspdf";
 import {
   BarChart3,
   CheckCircle,
@@ -23,38 +23,38 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function AnalysePage() {
-  interface AnalyseResult {
-    rentabilite: string;
-    loyer: {
-      estimation: string;
-      explication: string;
-    };
-    explicationLoyer: string;
-    fiscalite: {
-      regime: string;
-      explication: string;
-    };
-    explicationFiscalite: string;
-    recommandations: string[];
-    forces: string[];
-    faiblesses: string[];
-    questions: string[];
-    strategie: string;
-    estimationBien: {
-      estimation: string;
-      prixAffiche: string;
-      prixM2Quartier: string;
-      commentaire: string;
-      positionnement: "bonne_affaire" | "negociable" | "surcote";
-    };
-    tensionLocative: {
-      estZoneTendue: boolean;
-      commentaire: string;
-      infoReglementaire: string;
-    };
-  }
+export interface AnalyseResult {
+  rentabilite: string;
+  loyer: {
+    estimation: string;
+    explication: string;
+  };
+  explicationLoyer: string;
+  fiscalite: {
+    regime: string;
+    explication: string;
+  };
+  explicationFiscalite: string;
+  recommandations: string[];
+  forces: string[];
+  faiblesses: string[];
+  questions: string[];
+  strategie: string;
+  estimationBien: {
+    estimation: string;
+    prixAffiche: string;
+    prixM2Quartier: string;
+    commentaire: string;
+    positionnement: "bonne_affaire" | "negociable" | "surcote";
+  };
+  tensionLocative: {
+    estZoneTendue: boolean;
+    commentaire: string;
+    infoReglementaire: string;
+  };
+}
 
+export default function AnalysePage() {
   const [description, setDescription] = useState("");
   const [result, setResult] = useState<AnalyseResult | null>(null);
   const [loading, setLoading] = useState(false);
@@ -86,125 +86,6 @@ export default function AnalysePage() {
     }
 
     setLoading(false);
-  };
-
-  const getBase64FromUrl = async (url: string): Promise<string> => {
-    const res = await fetch(url);
-    const blob = await res.blob();
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(blob);
-      reader.onloadend = () => {
-        resolve(reader.result as string);
-      };
-      reader.onerror = reject;
-    });
-  };
-
-  const handleExportPDF = async () => {
-    if (!result) return;
-
-    const doc = new jsPDF();
-    const marginLeft = 20;
-    const contentWidth = 170;
-    let y = 20;
-    let currentPage = 1;
-
-    // Ajoute une image base64 du logo
-    const logoBase64 = await getBase64FromUrl("/logo_orange_bleu.png");
-
-    const primaryColor = [33, 150, 243]; // Bleu
-    const backgroundColor = [240, 240, 240];
-    const borderColor = [200, 200, 200];
-    const greenColor = [76, 175, 80];
-    const redColor = [244, 67, 54];
-
-    // Logo
-    doc.addImage(logoBase64, "PNG", marginLeft, y, 40, 8);
-    y += 7;
-
-    // Titre principal
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(22);
-    doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-    doc.text("Rapport PropertAI", marginLeft + 50, y);
-    y += 10;
-
-    // Ligne de séparation
-    doc.setDrawColor(borderColor[0], borderColor[1], borderColor[2]);
-    doc.line(marginLeft, y, 190, y);
-    y += 10;
-
-    const addFooter = () => {
-      doc.setFontSize(10);
-      doc.setTextColor(130);
-      doc.text(`Page ${currentPage}`, 180, 285, { align: "right" });
-      doc.text("Généré avec PropertAI – www.propertai.fr", marginLeft, 285);
-    };
-
-    const addSection = (
-      title: string,
-      content: string | string[],
-      options?: { color?: number[] }
-    ) => {
-      if (y > 240) {
-        addFooter();
-        doc.addPage();
-        currentPage++;
-        y = 20;
-      }
-
-      const padding = 4;
-      const boxTop = y;
-      const boxLeft = marginLeft - 2;
-
-      const text = typeof content === "string" ? content : content.join("\n");
-      const lines = doc.splitTextToSize(text, contentWidth - 2 * padding);
-      const boxHeight = lines.length * 6 + 16;
-
-      const sectionColor = options?.color ?? primaryColor;
-
-      doc.setFillColor(
-        backgroundColor[0],
-        backgroundColor[1],
-        backgroundColor[2]
-      );
-      doc.roundedRect(boxLeft, boxTop, contentWidth, boxHeight, 3, 3, "F");
-
-      doc.setDrawColor(borderColor[0], borderColor[1], borderColor[2]);
-      doc.roundedRect(boxLeft, boxTop, contentWidth, boxHeight, 3, 3);
-
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(14);
-      doc.setTextColor(sectionColor[0], sectionColor[1], sectionColor[2]);
-      doc.text(title, boxLeft + padding, y + 8);
-
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(12);
-      doc.setTextColor(0, 0, 0);
-      doc.text(lines, boxLeft + padding, y + 16);
-
-      y += boxHeight + 6;
-    };
-
-    // Sections principales
-    addSection("Rentabilité estimée", result.rentabilite);
-    addSection(
-      "Loyer estimé",
-      `${result.loyer.estimation}\n\n${result.loyer.explication}`
-    );
-    addSection(
-      "Fiscalité conseillée",
-      `${result.fiscalite.regime}\n\n${result.fiscalite.explication}`
-    );
-    addSection("Recommandations", result.recommandations);
-    addSection("Points forts", result.forces, { color: greenColor });
-    addSection("Points faibles", result.faiblesses, { color: redColor });
-    addSection("Questions à poser", result.questions);
-    addSection("Stratégie optimale", result.strategie);
-
-    addFooter();
-    doc.save("rapport_propertai.pdf");
   };
 
   return (
@@ -490,7 +371,7 @@ export default function AnalysePage() {
                 </div>
                 <div className="flex justify-between items-center">
                   <button
-                    onClick={handleExportPDF}
+                    onClick={() => handleExportPDF(result)}
                     className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-medium px-4 py-2 rounded-md transition duration-200 shadow-md"
                   >
                     <FileDown className="w-5 h-5" />
