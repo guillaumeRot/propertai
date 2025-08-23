@@ -9,6 +9,7 @@ export default function FeedbackForm({ analyseId }: { analyseId: number }) {
   );
   const [remarks, setRemarks] = useState("");
   const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const renderStars = (
     currentRating: number,
@@ -54,6 +55,7 @@ export default function FeedbackForm({ analyseId }: { analyseId: number }) {
         setDataRating(0);
         setRecommendation(null);
         setRemarks("");
+        setSubmitted(true);
       } else {
         alert("Erreur lors de l'envoi de l'avis ❌");
       }
@@ -71,70 +73,78 @@ export default function FeedbackForm({ analyseId }: { analyseId: number }) {
         Votre avis compte et nous permet d'améliorer l'outil 🙏
       </h3>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <p className="text-sm font-medium text-gray-700">
-            Design de l'application
-          </p>
-          {renderStars(designRating, setDesignRating)}
+      {submitted ? (
+        <div className="text-center text-green-600 font-medium py-6">
+          🎉 Merci pour votre retour, il a bien été envoyé 🙌
         </div>
+      ) : (
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <p className="text-sm font-medium text-gray-700">
+                Design de l'application
+              </p>
+              {renderStars(designRating, setDesignRating)}
+            </div>
 
-        <div>
-          <p className="text-sm font-medium text-gray-700">
-            Pertinence des données
-          </p>
-          {renderStars(dataRating, setDataRating)}
-        </div>
+            <div>
+              <p className="text-sm font-medium text-gray-700">
+                Pertinence des données
+              </p>
+              {renderStars(dataRating, setDataRating)}
+            </div>
 
-        <div>
-          <p className="text-sm font-medium text-gray-700">
-            Recommanderiez-vous l'application ?
-          </p>
-          <div className="flex gap-4 mt-1">
-            <button
-              onClick={() => setRecommendation("oui")}
-              className={`px-3 py-1 rounded ${
-                recommendation === "oui"
-                  ? "bg-green-500 text-white"
-                  : "bg-green-100 text-green-700 hover:bg-green-200"
-              }`}
-            >
-              Oui
-            </button>
-            <button
-              onClick={() => setRecommendation("non")}
-              className={`px-3 py-1 rounded ${
-                recommendation === "non"
-                  ? "bg-red-500 text-white"
-                  : "bg-red-100 text-red-700 hover:bg-red-200"
-              }`}
-            >
-              Non
-            </button>
+            <div>
+              <p className="text-sm font-medium text-gray-700">
+                Recommanderiez-vous l'application ?
+              </p>
+              <div className="flex gap-4 mt-1">
+                <button
+                  onClick={() => setRecommendation("oui")}
+                  className={`px-3 py-1 rounded ${
+                    recommendation === "oui"
+                      ? "bg-green-500 text-white"
+                      : "bg-green-100 text-green-700 hover:bg-green-200"
+                  }`}
+                >
+                  Oui
+                </button>
+                <button
+                  onClick={() => setRecommendation("non")}
+                  className={`px-3 py-1 rounded ${
+                    recommendation === "non"
+                      ? "bg-red-500 text-white"
+                      : "bg-red-100 text-red-700 hover:bg-red-200"
+                  }`}
+                >
+                  Non
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label className="text-sm font-medium text-gray-700 block mb-1">
+                Remarques supplémentaires (optionnel)
+              </label>
+              <textarea
+                rows={3}
+                className="w-full border border-gray-300 rounded-md p-2 text-sm"
+                placeholder="Votre retour..."
+                value={remarks}
+                onChange={(e) => setRemarks(e.target.value)}
+              />
+            </div>
           </div>
-        </div>
 
-        <div>
-          <label className="text-sm font-medium text-gray-700 block mb-1">
-            Remarques supplémentaires (optionnel)
-          </label>
-          <textarea
-            rows={3}
-            className="w-full border border-gray-300 rounded-md p-2 text-sm"
-            placeholder="Votre retour..."
-            value={remarks}
-            onChange={(e) => setRemarks(e.target.value)}
-          />
-        </div>
-      </div>
-
-      <button
-        onClick={handleSubmit}
-        disabled={loading}
-        className="mt-4 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md text-sm font-medium disabled:opacity-50"
-      >
-        {loading ? "Envoi en cours..." : "Envoyer mon avis"}
-      </button>
+          <button
+            onClick={handleSubmit}
+            disabled={loading}
+            className="mt-4 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md text-sm font-medium disabled:opacity-50"
+          >
+            {loading ? "Envoi en cours..." : "Envoyer mon avis"}
+          </button>
+        </>
+      )}
     </div>
   );
 }
