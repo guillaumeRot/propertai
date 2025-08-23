@@ -8,12 +8,12 @@ export const sendThankYouEmail = async (toEmail: string) => {
     await resend.emails.send({
       from: "PropertAI <no-reply@propertai.fr>",
       to: toEmail,
-      subject: "Bienvenue sur la bêta de PropertAI 🚀",
+      subject: "Bienvenue sur PropertAI 🎉",
       html: `
         <p>Bonjour,</p>
-        <p>Merci de vous être inscrit à la version bêta de <strong>PropertAI</strong> ! 🎉</p>
-        <p>Vous faites désormais partie des premiers testeurs de notre assistant d’analyse immobilière.</p>
-        <p>Vous pouvez maintenant vous connecter à votre compte.</p>
+        <p>Merci de vous être inscrit à <strong>PropertAI</strong> ! 🚀</p>
+        <p>Votre compte gratuit est désormais actif, vous pouvez dès maintenant profiter de notre assistant d’analyse immobilière.</p>
+        <p>Connectez-vous dès aujourd’hui et commencez à analyser vos annonces.</p>
         <p>À très vite,<br>L’équipe PropertAI</p>
       `,
     });

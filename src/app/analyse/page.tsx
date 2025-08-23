@@ -3,6 +3,7 @@
 import { PriceComparisonChart } from "@/components/charts/PriceComparisonChart";
 import { RentabiliteChart } from "@/components/charts/RentabiliteChart";
 import { handleExportPDF } from "@/components/ExportPDF";
+import FeedbackForm from "@/components/FeedbackForm";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { useSubscription } from "@/hooks/use-subscriptions";
@@ -24,6 +25,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export interface AnalyseResult {
+  analyseId: number;
   rentabilite: string;
   loyer: {
     estimation: string;
@@ -369,6 +371,7 @@ export default function AnalysePage() {
                     ))}
                   </ul>
                 </div>
+
                 <div className="flex justify-between items-center">
                   <button
                     onClick={() => handleExportPDF(result)}
@@ -378,6 +381,7 @@ export default function AnalysePage() {
                     Exporter en PDF
                   </button>
                 </div>
+                <FeedbackForm analyseId={result.analyseId} />
               </section>
             )}
           </div>

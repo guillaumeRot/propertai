@@ -150,4 +150,12 @@ model Analyse {
   createdAt              DateTime @default(now())
 }
 
-
+model Avis {
+  id          Int      @id @default(autoincrement())
+  analyseId   Int
+  design      Int
+  data        Int
+  recommendation String
+  remarks     String?
+  createdAt   DateTime @default(now())
+}

@@ -247,7 +247,7 @@ Voici la **description** du bien à analyser :
     sendFirstAnalyseEmail(session.user.email);
   }
 
-  await prisma.analyse.create({
+  const newAnalyse = await prisma.analyse.create({
     data: {
       userEmail: session.user.email,
       description,
@@ -271,6 +271,8 @@ Voici la **description** du bien à analyser :
       infoReglementaire: result.tensionLocative.infoReglementaire,
     },
   });
+
+  result.analyseId = newAnalyse.id;
 
   await prisma.subscription.update({
     where: { userEmail: session.user.email },
