@@ -42,7 +42,7 @@ export async function DELETE() {
       where: { id: subscription.id },
       data: {
         status: 'CANCELED',
-        canceledAt: new Date(),
+        updatedAt: new Date(),
       },
     });
 
