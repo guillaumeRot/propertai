@@ -18,7 +18,7 @@ export const useSubscription = () => {
       try {
         const res = await fetch("/api/subscriptions");
         if (!res.ok) throw new Error("Not authorized");
-        const json = await res.json();
+        const json = await res.json();    
 
         const enriched = {
           ...json,
