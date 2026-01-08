@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 import { PrismaClient } from "@prisma/client";
 import { NextRequest } from "next/server";
 import Stripe from "stripe";
+import { sendCreateSubscriptionEmail, sendDeleteSubscriptionEmail } from "@/lib/email/sendSubscription";
 
 const prisma = new PrismaClient();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -125,6 +126,7 @@ export async function POST(req: NextRequest) {
     });
 
     await notifyDiscordStripeEvent(email, event.type, plan);
+    await sendCreateSubscriptionEmail(email);
 
     console.log(`✅ Abonnement ${plan} mis à jour pour ${email}`);
   }
@@ -147,6 +149,7 @@ export async function POST(req: NextRequest) {
       });
 
       await notifyDiscordStripeEvent(email, event.type, "–");
+      await sendDeleteSubscriptionEmail(email);
 
       console.log(`🚫 Abonnement annulé pour ${email}`);
     }

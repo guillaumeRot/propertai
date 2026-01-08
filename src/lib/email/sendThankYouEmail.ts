@@ -8,6 +8,7 @@ export const sendThankYouEmail = async (toEmail: string) => {
     await resend.emails.send({
       from: "PropertAI <no-reply@propertai.fr>",
       to: toEmail,
+      replyTo: "guillaume.rot@gmail.com",
       subject: "Bienvenue sur PropertAI 🎉",
       html: `
         <p>Bonjour,</p>
